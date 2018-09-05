@@ -16,7 +16,7 @@ int main() {
     s2 = string(scan);
     scanf(" %s", scan);
     target = string(scan);
-    
+
     for (int i = 0; i < N; i++) if (s1[i] != target[i] && s2[i] != target[i]) {
         printf("PLAN FOILED\n");
         return 0;

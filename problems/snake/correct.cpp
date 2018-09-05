@@ -33,7 +33,7 @@ int main() {
                 if (d == 0) move = 0;
                 else move = 1;
             }
-            
+
             print(move);
             d = nextd;
         }

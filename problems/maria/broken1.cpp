@@ -42,7 +42,7 @@ int main(){
         if (bestval == -1) continue;
         bestval += plats[i].c;
         // set new values, possibly increasing values
-        
+
         // (bug) I Forgot to put the second one of these lines in
         v[plats[i].l-1] = max(bestval, v.count(plats[i].l-1) == 0 ? 0 : v[plats[i].l-1]);
         v[plats[i].r+1] = max(bestval, v.count(plats[i].r+1) == 0 ? 0 : v[plats[i].r+1]);

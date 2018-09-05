@@ -12,7 +12,7 @@ using namespace std;
 #ifdef DEBUG
 #define D(x...) fprintf(stderr,x)
 #else
-#define D(x...) 
+#define D(x...)
 #endif
 
 typedef long long ll;
@@ -37,7 +37,7 @@ int main() {
     }
     sort(V,V+v);
     V[v++] = c;
-    // long longs to binary search the answer    
+    // long longs to binary search the answer
     // in case the answer is very big
     ll lo = 0;
     ll hi = (1LL<<31);

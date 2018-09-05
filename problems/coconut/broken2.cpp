@@ -42,13 +42,13 @@ struct circle{
 
     bool in(point &p){
         arrow a = centre-p;
-        double sql = a.sqLength(); 
+        double sql = a.sqLength();
         return a.sqLength() <= radius*radius + 1e-4;
     }
-    
+
     bool on(point &p){
         arrow a = centre-p;
-        double sql = a.sqLength(); 
+        double sql = a.sqLength();
         return abs(sql-radius*radius) <= 1e-4;
     }
 };

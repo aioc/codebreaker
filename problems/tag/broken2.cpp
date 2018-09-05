@@ -60,7 +60,7 @@ int kruskals(vector<commlink> l, int max_edges) {
 }
 
 int main() {
-    
+
     int N, M, K;
 
     cin >> N >> M; //>> K;
@@ -70,11 +70,11 @@ int main() {
         c.c = 1;
         links.push_back(c);
     }
-    
+
     uf_init(N);
     int mstCost = kruskals(links, N-2); //K);
     //cout << mstCost << "\n";
-    
+
     int red = 0;
     int blue = 0;
     for(int i = 1; i <= N; i++) {
