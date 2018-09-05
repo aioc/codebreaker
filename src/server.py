@@ -8,8 +8,6 @@ import pygments.lexers
 import pygments.formatters
 import os
 import problem
-import execute
-import judge
 import jwt
 import datetime
 import results
@@ -238,6 +236,6 @@ app.router.add_get('/queue', page_queue)
 
 
 if __name__ == '__main__':
-    problem.add_problems()
+    problem.load_problems()
     p = os.getenv('PORT')
     aiohttp.web.run_app(app, host = '0.0.0.0', port = int(p) if p else 5001)

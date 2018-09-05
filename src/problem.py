@@ -74,15 +74,20 @@ class Problem:
         with open(che, "rb") as f:
             self.sanity_exe = f.read()
 
+problems = []
 problem_dict = {}
 
-async def load_problems():
+def load_problems():
+    global problems
     with open(os.path.join(os.getcwd(),'problems/problems.json'), 'r') as f:
         problems = json.load(f)
     for d in problems:
         p = Problem(d['long_name'], d['short_name'], d['task_code'])
         assert(p.short_name not in problem_dict)
         problem_dict[p.short_name] = p
+
+async def compile_problems():
+    for d in problems:
         print("Loading %s" % (d['short_name']))
         await problem_dict[d['short_name']].load_executables(d['sanity_exe'], d['broken_exe'], d['correct_exe'], d['checker_exe'])
 
