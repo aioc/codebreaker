@@ -42,8 +42,8 @@ def add_problems():
 
 async def compile_problems():
     for d in problems:
+        print("Loading %s" % (d['short_name']))
         await problem_dict[d['short_name']].load_executables(d['sanity_exe'], d['broken_exe'], d['correct_exe'], d['checker_exe'])
-        print("Compiled", d['short_name'])
 
 
 def get(name):

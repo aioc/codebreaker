@@ -23,7 +23,7 @@ class Problem:
 
     async def recompile_from_cpp(self, ef, sf):
         assert(os.path.isfile(sf))
-        if os.path.isfile(ef) and os.path.getmtime(ef) > os.path.getmtime(sf): return
+        if os.path.isfile(ef) and os.path.getmtime(ef) > os.path.getmtime(sf): return False
         box = execute.Box()
         with open(sf, "rb") as sc:
             cfile = box.prepfile('source.cpp', sc.read())
@@ -31,6 +31,7 @@ class Problem:
         await box.run_command_async('g++ -O2 -std=c++11 -o %s %s' % (efile, cfile), timeout=10)
         shutil.copy2(efile,ef)
         box.cleanup()
+        return True
     
     async def load_executables(self, se, be, coe, che):
         directory = os.path.dirname(__file__) + "/problems/"
@@ -40,7 +41,8 @@ class Problem:
         if se.endswith('.cpp'):
             sf = se
             se = sf[:-4] + '.exe'
-            await self.recompile_from_cpp(se, sf)
+            r = await self.recompile_from_cpp(se, sf)
+            if r: print(" > recompiled sanity")
         with open(se, "rb") as f:
             self.sanity_exe = f.read()
 
@@ -49,7 +51,8 @@ class Problem:
         if be.endswith('.cpp'):
             sf = be
             be = sf[:-4] + '.exe'
-            await self.recompile_from_cpp(be, sf)
+            r = await self.recompile_from_cpp(be, sf)
+            if r: print(" > recompiled broken solution")
         with open(be, "rb") as f:
             self.broken_exe = f.read()
 
@@ -58,7 +61,8 @@ class Problem:
         if coe.endswith('.cpp'):
             sf = coe
             coe = sf[:-4] + '.exe'
-            await self.recompile_from_cpp(coe, sf)
+            r = await self.recompile_from_cpp(coe, sf)
+            if r: print(" > recompiled correct")
         with open(coe, "rb") as f:
             self.sanity_exe = f.read()
 
@@ -68,6 +72,7 @@ class Problem:
         if che.endswith('.cpp'):
             sf = che
             che = sf[:-4] + '.exe'
-            await self.recompile_from_cpp(che, sf)
+            r = await self.recompile_from_cpp(che, sf)
+            if r: print(" > recompiled checker")
         with open(che, "rb") as f:
             self.sanity_exe = f.read()
