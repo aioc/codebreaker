@@ -7,7 +7,7 @@ import pygments
 import pygments.lexers
 import pygments.formatters
 import os
-import problem
+import problems
 import jwt
 import datetime
 import results
@@ -105,7 +105,7 @@ WHERE score > 0 AND owner = $1;
 @aiohttp_jinja2.template('problem.j2')
 async def page_problem_description(request):
     name = request.match_info['name']
-    problem = problem.get_problem(name)
+    problem = problems.get_problem(name)
     res = await database.connection.fetch(SELECT_RESULTS, request._username, name)
     completed = await database.connection.fetch(SELECT_COMPLETED_PROBLEMS, request._username)
     completed = {r['problem'] for r in completed}
@@ -125,7 +125,7 @@ async def page_problem_description(request):
         'results': res[::-1],
         'best_score': best_score,
         'username': request._display_name,
-        'problems': problem.get_alphabetical(),
+        'problems': problems.get_alphabetical(),
         'completed': completed
     }
 app.router.add_get('/problem/{name}', page_problem_description)
@@ -156,7 +156,7 @@ async def page_login_post(request):
     password = req.get('password')
     token = await get_token_cookie(username, password)
     if token is not None:
-        status = aiohttp.web.HTTPSeeOther('/problem/' + problem.get_alphabetical()[0].short_name)
+        status = aiohttp.web.HTTPSeeOther('/problem/' + problems.get_alphabetical()[0].short_name)
         status.set_cookie('login-token', token, max_age = 72 * 60 * 60)
         print("LOGIN: %s" % (username))
         return status
@@ -211,7 +211,7 @@ app.router.add_get('/submission/{id}', page_submission)
 
 @aiohttp_jinja2.template('scoreboard.j2')
 async def page_scoreboard(request):
-    p = problem.get_alphabetical()
+    p = problems.get_alphabetical()
     g = []
     for i in p:
         s = ' '.join(i.long_name.split()[:-1])
@@ -219,7 +219,7 @@ async def page_scoreboard(request):
 
     return {
             'groups': [{'name': i, 'num': sum(i in j.long_name for j in p)} for i in g],
-            'problem_ids': [i.long_name.split()[-1] for i in problem.get_alphabetical()],
+            'problem_ids': [i.long_name.split()[-1] for i in p],
             'scores': await results.get_scoreboard()
     }
 app.router.add_get('/scoreboard', page_scoreboard)
@@ -236,6 +236,6 @@ app.router.add_get('/queue', page_queue)
 
 
 if __name__ == '__main__':
-    problem.load_problems()
+    problems.load_problems()
     p = os.getenv('PORT')
     aiohttp.web.run_app(app, host = '0.0.0.0', port = int(p) if p else 5001)
