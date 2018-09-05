@@ -5,9 +5,6 @@ import collections
 import database
 import random
 
-CACHE = {}
-SCOREBOARD = []
-
 SELECT_USER_PROBLEM_TOTAL = '''
 SELECT sum(score)
 FROM results LEFT JOIN users
@@ -29,13 +26,23 @@ WHERE complete = TRUE AND id < $1
 ORDER BY results.id ASC;
 '''
 
+UPDATE_LIMIT = 2
+
 async def get_user_problem_total(username, problem):
     result = await database.connection.fetchval(SELECT_USER_PROBLEM_TOTAL, username, problem)
     if result is None: result = 0
     return result
 
-# Only update this every minute or so, because it'll be slow.
+scoreboard = []
+last_update = 0
+
 async def get_scoreboard():
+    global scoreboard
+    global last_update
+
+    if time.time() - last_update < UPDATE_LIMIT: return scoreboard
+    last_update = time.time()
+
     scores = {}
     scoreboard = []
 
@@ -64,3 +71,4 @@ async def get_scoreboard():
             })
     scoreboard.sort(key = lambda x: x['total'], reverse = True)
     return scoreboard
+

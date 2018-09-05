@@ -49,4 +49,4 @@ CREATE TABLE settings (
 );
 
 INSERT INTO settings(name, value) VALUES ('submissions_allowed', 0);
-INSERT INTO settings(name, value) VALUES ('scoreboard_freeze_id', 0);
+INSERT INTO settings(name, value) VALUES ('scoreboard_freeze_id', 100000000);

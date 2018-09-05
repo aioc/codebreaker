@@ -61,7 +61,7 @@ class Problem:
             r = await self.recompile_from_cpp(coe, sf)
             if r: print(" > recompiled correct")
         with open(coe, "rb") as f:
-            self.sanity_exe = f.read()
+            self.correct_exe = f.read()
 
         # Checker
         if che == '': che = 'match_file'
@@ -72,7 +72,7 @@ class Problem:
             r = await self.recompile_from_cpp(che, sf)
             if r: print(" > recompiled checker")
         with open(che, "rb") as f:
-            self.sanity_exe = f.read()
+            self.checker_exe = f.read()
 
 problems = []
 problem_dict = {}

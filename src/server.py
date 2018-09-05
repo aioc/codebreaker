@@ -180,7 +180,7 @@ async def page_submit(request):
     postdata = await request.post()
     proposed_input = postdata['proposed_input'].strip()
     correct_output = postdata['correct_output'].strip()
-    problem = problem.get_problem(name)
+    problem = problems.get_problem(name)
 
     if proposed_input != "" or correct_output != "":
         submissions_allowed = await database.connection.fetchval(SELECT_SETTING, 'submissions_allowed')
@@ -216,7 +216,6 @@ async def page_scoreboard(request):
     for i in p:
         s = ' '.join(i.long_name.split()[:-1])
         if s not in g: g.append(s)
-
     return {
             'groups': [{'name': i, 'num': sum(i in j.long_name for j in p)} for i in g],
             'problem_ids': [i.long_name.split()[-1] for i in p],
@@ -233,7 +232,6 @@ async def page_queue(request):
         'results': res[::-1]
     }
 app.router.add_get('/queue', page_queue)
-
 
 if __name__ == '__main__':
     problems.load_problems()
