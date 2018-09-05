@@ -1,0 +1,218 @@
+body {
+	font-family: sans-serif;
+	margin: 0px;
+}
+
+pre {
+	padding: 10px;
+}
+
+h2 {
+	margin: 0;
+	padding: 15px 0 0 0;
+}
+
+h3 {
+	margin: 0;
+	padding: 10px 0 0 0;
+	font-size: 16px;
+}
+
+div.homepage {
+	text-align: center;
+	width: 100vw;
+}
+
+div.scoreboard {
+	width: 100%;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+
+div.homepage table {
+	margin: 0px auto;
+}
+
+div.wrapper {
+	margin: 10px 20px;
+	padding: 10px;
+}
+
+div.problem-view {
+	display: flex;
+}
+
+div.sidebar {
+	float: left;
+	min-height: 100vh;
+	background-color: lightgrey;
+}
+
+div.sidebar div.heading {
+	font-weight: bold;
+	background-color: black;
+	color: rgb(33, 200, 237);
+}
+
+div.sidebar div {
+	width: 200px;
+	padding: 2px 20px;
+}
+
+div.sidebar p {
+	margin: 5px 0px;
+}
+
+div.sidebar a, div.sidebar a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+div.sidebar a:hover {
+	text-decoration: none;
+	color: white;
+}
+
+div.sidebar div.problem-link:hover {
+	background-color: rgb(33, 200, 237);
+}
+
+div.problem-statement {
+	margin: 30px;
+	width: 100%;
+	max-width: 1000px;
+	box-sizing: border-box;
+}
+
+div.highlight {
+	font-size: 16px;
+	font-weight: 400;
+}
+
+div.submit-boxes {
+	display: flex;
+	width: 100%;
+}
+
+div.submit-boxes form {
+	width: 100%;
+}
+
+div.submit-boxes div {
+	flex: 50%;
+}
+
+div.submit-input {
+	padding-right: 10px;
+}
+
+div.submit-output {
+	padding-left: 10px;
+}
+
+textarea {
+	width: 100%;
+	rows: 5;
+	resize: none;
+}
+
+.submit-button {
+	font-size: 20px;
+}
+
+table.results {
+	margin-top: 10px;
+	border-collapse: collapse;
+	border: none;
+}
+
+.score-column {width: 50px;}
+.status-column {width: 350px;}
+.data-column {width: 50px;}
+
+table.results th, td.score-column, td.data-column {text-align: center;}
+
+th, td {
+	padding: 5px 15px;
+}
+
+table.results thead {
+	background-color: darkgrey;
+	color: white;
+}
+
+table.results tbody {
+	background-color: lightgrey;
+}
+
+.padded {
+	margin: 20px;
+}
+
+span.language {
+	background-color: rgb(33, 200, 237);
+	color: white;
+	padding: 4px;
+}
+
+.score-100 {
+	background-color: rgb(73, 223, 49);
+}
+
+.score-0 {
+	background-color: rgb(225, 120, 120);
+}
+
+#editor {
+	/*position: absolute;*/
+	min-width: 300px;
+	min-height: 200px;
+}
+
+table.scoreboard p, table.scoreboard h3 {
+	padding: 0px;
+	margin: 0px;
+}
+
+table.scoreboard {
+	border-collapse: collapse;
+	margin-bottom: 30px;
+}
+
+th.group-header {
+	padding: 0 5px;
+}
+th.group-header>div {
+	border-bottom: 1px solid black;
+	padding: 5px;
+}
+
+table.scoreboard td {
+	padding: 12px;
+	border: none;
+}
+
+table.scoreboard tr td {
+	/*background-color: #f0f0f0;*/
+}
+
+table.scoreboard tr:nth-child(odd) td {
+	background-color: #f0f0f0;
+}
+
+table.scoreboard tr td.total {
+	background-color: rgb(124, 227, 250);
+}
+
+
+table.scoreboard tr:nth-child(odd) td.total {
+	background-color: rgb(33, 200, 237);
+}
+
+div.submission-page {
+	padding: 10px;
+}
+div.submission-page pre {
+	background-color: #F0F0F0
+}

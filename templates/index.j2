@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="/static/layout.css">
+		<meta charset="utf-8">
+		<title>Login - Codebreaker</title>
+	</head>
+	<body>
+		<div class="homepage">
+			<h1>Codebreaker 2018</h1>
+			{% if error %}
+				<p>Invalid.</p>
+			{% endif %}
+			<form action="login" method="post">
+				<input name="username" value="" />
+				<br>
+				<input type="password" name="password" value="" />
+				<br>
+				<input type="submit" value="Enter" />
+			</form>
+		</div>
+	</body>
+</html>

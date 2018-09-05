@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="/static/layout.css">
+		<link rel="stylesheet" href="/static/code.css">
+		<meta charset="utf-8">
+		<title>{{ problem.long_name }} - Codebreaker</title>
+	</head>
+	<body>
+		<div class="problem-view">
+		<div class="sidebar">
+			<div class="heading"><p>Hello, {{ username }}</p></div>
+			<!-- <a href="/account" target="_blank">
+				<div class="problem-link"><p>Change Name</p></div>
+			</a> -->
+			<div class="heading"><p>Problems</p></div>
+			{% for prob in problems %}
+				<a href={{"/problem/" + prob.short_name}}>
+					<div class="problem-link">
+						<p>
+							{% if prob.short_name in completed %}
+								&#x2713;
+							{% endif %}
+							{{ prob.long_name }}
+						</p>
+					</div>
+				</a>
+			{% endfor %}
+			<div class="heading"><p>Information</p></div>
+			<a href="/scoreboard" target="_blank">
+				<div class="problem-link"><p>Scoreboard</p></div>
+			</a>
+		</div>
+		<div class="problem-statement">
+				<h1>{{ problem.long_name }}</h1>
+				<h2>Broken Code</h2>
+                {{ code | safe }}
+                {% if problem.short_name not in completed %}
+				<h2>Submit</h2>
+				{% if can_submit %}
+				<form action={{"/submit/"+problem.short_name}} method="post">
+					<div class="submit-boxes">
+						<div class="submit-input">
+							<h3>Input</h3>
+							<textarea name="proposed_input" rows="8"></textarea>
+						</div>
+						<div = class="submit-output">
+							<h3>Correct Output</h3>
+							<textarea name="correct_output" rows="8"></textarea>
+						</div>
+					</div>
+					<input class="submit-button" type="submit" value="Submit">
+				</form>
+				{% else %}
+				<p>{{ submit_message }}
+				{% endif %}
+				{% endif %}
+				{% if results|length > 0 %}
+				<h2>Results</h2>
+				<table class="results">
+					<thead>
+						<tr>
+							<!-- <th>Time</th> -->
+							<th class="score-column">Score</th>
+							<th class="status-column">Result</th>
+							<th class="data-column">Data</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for result in results %}
+							<tr>
+								<!-- <td>{{ result.time }}</td> -->
+								<!-- <td>(button)</td> -->
+								{% if result.complete == false %}
+									<td class="score-column">?</td>
+								{% elif result.score > 0 %}
+									<td class="score-column score-100">{{ result.score }}</td>
+								{% else %}
+									<td class="score-column score-0">{{ result.score }}</td>
+								{% endif %}
+								<td class="status-column">{{ result.status }}</td>
+								<td class="data-column"><a href="/submission/{{result.id}}" target="_blank">View</a></td>
+							</tr>
+					{% endfor %}
+					<tbody>
+				</table>
+				{% endif %}
+		</div>
+	</div>
+		<script type="text/javascript" src="/static/life_quality.js"></script>
+		<!-- <script src="/static/ace-builds/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var editor = ace.edit("editor");
+			editor.setTheme("ace/theme/monokai");
+			editor.getSession().setMode("ace/mode/befunge");
+		</script> -->
+	</body>
+</html>

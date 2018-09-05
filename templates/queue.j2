@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="/static/layout.css">
+		<meta charset="utf-8">
+		<meta http-equiv="refresh" content="20" >
+		<title>Queue - Codebreaker</title>
+	</head>
+	<body>
+		<table class="results">
+			<thead>
+				<tr>
+					<!-- <th>Time</th> -->
+					<th>ID</th>
+					<th>User</th>
+					<th>Problem</td>
+					<th>Score</th>
+					<th>Status</th>
+					<th>Data</th>
+				</tr>
+			</thead>
+			{% for result in results[::-1] %}
+				<tbody>
+					<tr>
+						<!-- <td>{{ result.time }}</td> -->
+						<!-- <td>(button)</td> -->
+						<td>{{ result.id }}</td>
+						<td>{{ result.owner }}</td>
+						<td>{{ result.problem }}</td>
+						{% if result.complete == false %}
+							<td>?</td>
+						{% elif result.score > 0 %}
+							<td class="score-100">{{ result.score }}</td>
+						{% else %}
+							<td class="score-0">{{ result.score }}</td>
+						{% endif %}
+						<td>{{ result.status }}</td>
+						<td><a href="/submission/{{result.id}}" target="_blank">View</a></td>
+					</tr>
+				</tbody>
+			{% endfor %}
+		</table>
+	</body>
+</html>

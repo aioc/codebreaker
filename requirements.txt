@@ -1,0 +1,6 @@
+aiohttp
+asyncpg
+jinja2
+PyJWT
+aiohttp_jinja2
+pygments

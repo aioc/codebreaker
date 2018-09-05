@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="/static/layout.css">
+		<meta charset="utf-8">
+		<meta http-equiv="refresh" content="60" >
+		<title>Scoreboard - Codebreaker</title>
+	</head>
+	<body>
+		<div class="scoreboard">
+			<div>
+				<h1>Highscores</h1>
+				<table class="scoreboard">
+					<thead>
+						<tr>
+							<th></th>
+							{% for g in groups %}
+							<th class="group-header" colspan="{{g['num']}}">
+								<div>{{g['name']}}</div>
+							</th>
+							{% endfor %}
+							<th></th>
+						</tr>
+						<tr>
+							<th></th>
+            	{% for p in problem_ids %}
+              <th>{{ p }}</th>
+              {% endfor %}
+          		<th>Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for row in scores %}
+						<tr>
+							<td class="name"><p>{{ row.name }}</p></td>
+							{% for score in row.scores %}
+							<td>
+                                {% if score.score > 0 %}
+								<p>{{ score.score }}</p>
+                                {% else %}
+                                <p></p>
+								{% endif %}
+							</td>
+                            {% endfor %}
+							<td class="total"><p>{{ row.total }}</p></td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

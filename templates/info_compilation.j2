@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="/static/layout.css">
+		<meta charset="utf-8">
+		<title>Compilation - Codebreaker</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<h1>Compilation Info</h1>
+
+			<h2>C</h2>
+			<p>All C programs are compiled with the following command:</p>
+			<pre>gcc source.c -o executable -std=c11</pre>
+			<p>GCC version information</p>
+			<pre>gcc (Ubuntu 4.8.4-2ubuntu1~14.04.3) 4.8.4
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</pre>
+			<p>The length of a C program is the total number of characters in the code, excluding whitespace at the start and ends of the program.</p>
+
+			<h2>Befunge</h2>
+			<h3>Interperetation</h3>
+			<p>
+				All Befunge programs are run with this interpereter:
+				<a href="https://gist.github.com/DXsmiley/35416396d2cde813fa43b2bc5e85b5a8" target="_blank">Link</a>
+			</p>
+			<p>It is compiled with the following command</p>
+			<pre>gcc befunge.c -o befunge -std=c11 -DLARGE_BOARD</pre>
+			<p>
+				You can leave out the <code>-DLARGE_BOARD</code> for easier debugging.
+				If you want a board size that is not 30 by 30 or 100 by 100, edit the code yourself. Look for <code>#define BOARD_WIDTH</code>.
+				If you want to submit a solution that requires a board larger than 100 by 100, something is definitely wrong.
+			</p>
+			<p>Run a befunge program with one the following commands:</p>
+			<pre>./befunge my_code.befunge
+./befunge --debug my_code.befunge</pre>
+			<p>The length of a befunge program is the total number of <i>non-whitespace</i> characters.</p>
+			<h3>Language Reference</h3>
+			<p>Here's a <a href="https://esolangs.org/wiki/Befunge">description of the language</a>.</p>
+			<h3>Command Reference</h3>
+			<p>Taken from the page above</p>
+			<table>
+				<tr>
+					<th>Cmd</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td><code>+</code></td>
+					<td>Addition: Pop two values a and b, then push the result of a+b</td>
+				</tr>
+				<tr>
+					<td><code>-</code></td>
+					<td>Subtraction: Pop two values a and b, then push the result of b-a</td>
+				</tr>
+				<tr>
+					<td><code>*</code></td>
+					<td>Multiplication: Pop two values a and b, then push the result of a*b</td>
+				</tr>
+				<tr>
+					<td><code>/</code></td>
+					<td>
+						Integer division: Pop two values a and b, then push the result of b/a, rounded down.
+						According to the specifications, if a is zero, ask the user what result they want,
+						<i>although the implementation used on the server doesn't do this</i>.
+					</td>
+				</tr>
+				<tr>
+					<td><code>%</code></td>
+					<td>Modulo: Pop two values a and b, then push the remainder of the integer division of b/a.</td>
+				</tr>
+				<tr>
+					<td><code>!</code></td>
+					<td>Logical NOT: Pop a value. If the value is zero, push 1; otherwise, push zero.</td>
+				</tr>
+				<tr>
+					<td><code>`</code></td>
+					<td>Greater than: Pop two values a and b, then push 1 if b&gt;a, otherwise zero.</td>
+				</tr>
+				<tr>
+					<td><code>&gt;</code></td>
+					<td>PC direction right</td>
+				</tr>
+				<tr>
+					<td><code>&lt;</code></td>
+					<td>PC direction left</td>
+				</tr>
+				<tr>
+					<td><code>^</code></td>
+					<td>PC direction up</td>
+				</tr>
+				<tr>
+					<td><code>v</code></td>
+					<td>PC direction down</td>
+				</tr>
+				<tr>
+					<td><code>?</code></td>
+					<td>Random PC direction</td>
+				</tr>
+				<tr>
+					<td><code>_</code></td>
+					<td>Horizontal IF: pop a value; set direction to right if value=0, set to left otherwise</td>
+				</tr>
+				<tr>
+					<td><code>|</code></td>
+					<td>Vertical IF: pop a value; set direction to down if value=0, set to up otherwise</td>
+				</tr>
+				<tr>
+					<td><code>"</code></td>
+					<td>Toggle stringmode (push each character's ASCII value all the way up to the next <code>"</code>)</td>
+				</tr>
+				<tr>
+					<td><code>:</code></td>
+					<td>Duplicate top stack value</td>
+				</tr>
+				<tr>
+					<td><code>\</code></td>
+					<td>Swap top stack values</td>
+				</tr>
+				<tr>
+					<td><code>$</code></td>
+					<td>Pop (remove) top stack value and discard</td>
+				</tr>
+				<tr>
+					<td><code>.</code></td>
+					<td>Pop top of stack and output as integer</td>
+				</tr>
+				<tr>
+					<td><code>,</code></td>
+					<td>Pop top of stack and output as ASCII character</td>
+				</tr>
+				<tr>
+					<td><code>#</code></td>
+					<td>Bridge: jump over next command in the current direction of the current PC</td>
+				</tr>
+				<tr>
+					<td><code>g</code></td>
+					<td>A "get" call (a way to retrieve data in storage). Pop two values y and x, then push the ASCII value of the character at that position in the program. If (x,y) is out of bounds, push 0</td>
+				</tr>
+				<tr>
+					<td><code>p</code></td>
+					<td>A "put" call (a way to store a value for later use). Pop three values y, x and v, then change the character at the position (x,y) in the program to the character with ASCII value v</td>
+				</tr>
+				<tr>
+					<td><code>&amp;</code></td>
+					<td>Get integer from user and push it</td>
+				</tr>
+				<tr>
+					<td><code>~</code></td>
+					<td>Get character from user and push it</td>
+				</tr>
+				<tr>
+					<td><code>@</code></td>
+					<td>End program</td>
+				</tr>
+				<tr>
+					<td><code>0</code> – <code>9</code></td>
+					<td>Push corresponding number onto the stack</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>
