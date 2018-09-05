@@ -1,0 +1,173 @@
+[
+    {
+        "long_name": "Coconut 1",
+        "short_name": "a5-coconut-1",
+        "task_code": "coconut/broken1.cpp",
+        "sanity_exe": "coconut/sanity",
+        "broken_exe": "coconut/broken1.cpp",
+        "correct_exe": "coconut/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Coconut 2",
+        "short_name": "a5-coconut-2",
+        "task_code": "coconut/broken2.cpp",
+        "sanity_exe": "coconut/sanity",
+        "broken_exe": "coconut/broken2.cpp",
+        "correct_exe": "coconut/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Coconut 3",
+        "short_name": "a5-coconut-3",
+        "task_code": "coconut/broken3.cpp",
+        "sanity_exe": "coconut/sanity",
+        "broken_exe": "coconut/broken3.cpp",
+        "correct_exe": "coconut/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Mango 1",
+        "short_name": "a1-mango-1",
+        "task_code": "mango/broken1.cpp",
+        "sanity_exe": "mango/sanity",
+        "broken_exe": "mango/broken1.cpp",
+        "correct_exe": "mango/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Mango 2",
+        "short_name": "a1-mango-2",
+        "task_code": "mango/broken2.cpp",
+        "sanity_exe": "mango/sanity",
+        "broken_exe": "mango/broken2.cpp",
+        "correct_exe": "mango/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Mango 3",
+        "short_name": "a1-mango-3",
+        "task_code": "mango/broken3.cpp",
+        "sanity_exe": "mango/sanity",
+        "broken_exe": "mango/broken3.cpp",
+        "correct_exe": "mango/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Mango 4",
+        "short_name": "a1-mango-4",
+        "task_code": "mango/broken4.cpp",
+        "sanity_exe": "mango/sanity",
+        "broken_exe": "mango/broken4.cpp",
+        "correct_exe": "mango/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "LSC 1",
+        "short_name": "a6-lollipop-1",
+        "task_code": "lollipop/broken1.cpp",
+        "sanity_exe": "lollipop/sanity",
+        "broken_exe": "lollipop/broken1.cpp",
+        "correct_exe": "lollipop/correct.cpp",
+        "checker_exe": "lollipop/checker"
+    },
+    {
+        "long_name": "Chimera 1",
+        "short_name": "a4-chimera-1",
+        "task_code": "chimera/broken1.cpp",
+        "sanity_exe": "chimera/sanity",
+        "broken_exe": "chimera/broken1.cpp",
+        "correct_exe": "chimera/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Chimera 2",
+        "short_name": "a4-chimera-2",
+        "task_code": "chimera/broken2.cpp",
+        "sanity_exe": "chimera/sanity",
+        "broken_exe": "chimera/broken2.cpp",
+        "correct_exe": "chimera/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Chimera 3",
+        "short_name": "a4-chimera-3",
+        "task_code": "chimera/broken3.cpp",
+        "sanity_exe": "chimera/sanity",
+        "broken_exe": "chimera/broken3.cpp",
+        "correct_exe": "chimera/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Tag 1",
+        "short_name": "a2-tag-1",
+        "task_code": "tag/broken1.cpp",
+        "sanity_exe": "tag/sanity",
+        "broken_exe": "tag/broken1.cpp",
+        "correct_exe": "tag/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Tag 2",
+        "short_name": "a2-tag-2",
+        "task_code": "tag/broken2.cpp",
+        "sanity_exe": "tag/sanity",
+        "broken_exe": "tag/broken2.cpp",
+        "correct_exe": "tag/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Tag 3",
+        "short_name": "a2-tag-3",
+        "task_code": "tag/broken3.cpp",
+        "sanity_exe": "tag/sanity",
+        "broken_exe": "tag/broken3.cpp",
+        "correct_exe": "tag/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Tag 4",
+        "short_name": "a2-tag-4",
+        "task_code": "tag/broken4.cpp",
+        "sanity_exe": "tag/sanity",
+        "broken_exe": "tag/broken4.cpp",
+        "correct_exe": "tag/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Snake 1",
+        "short_name": "a3-snake-1",
+        "task_code": "snake/broken1.cpp",
+        "sanity_exe": "snake/sanity",
+        "broken_exe": "snake/broken1.cpp",
+        "correct_exe": "snake/correct.cpp",
+        "checker_exe": "snake/checker"
+    },
+    {
+        "long_name": "Snake 2",
+        "short_name": "a3-snake-2",
+        "task_code": "snake/broken2.cpp",
+        "sanity_exe": "snake/sanity",
+        "broken_exe": "snake/broken2.cpp",
+        "correct_exe": "snake/correct.cpp",
+        "checker_exe": "snake/checker"
+    },
+    {
+        "long_name": "Maria 1",
+        "short_name": "b2-maria-1",
+        "task_code": "maria/broken1.cpp",
+        "sanity_exe": "maria/sanity",
+        "broken_exe": "maria/broken1.cpp",
+        "correct_exe": "maria/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Greed 1",
+        "short_name": "c2-greed-1",
+        "task_code": "greed/broken1.cpp",
+        "sanity_exe": "greed/sanity",
+        "broken_exe": "greed/broken1.cpp",
+        "correct_exe": "greed/correct.cpp",
+        "checker_exe": "match_file"
+    }
+]

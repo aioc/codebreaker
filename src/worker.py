@@ -5,8 +5,7 @@ import json
 import asyncio
 import sys
 import random
-#os.chdir(os.path.join(os.path.dirname(__file__),".."))
-print(os.getcwd())
+os.chdir(os.path.join(os.path.dirname(__file__),".."))
 import database
 import judge
 import problem
@@ -49,9 +48,8 @@ if __name__ == '__main__':
     signal.signal(signal.SIGINT, handle_sigint)
     num_threads = 1 if len(sys.argv) == 1 else int(sys.argv[1])
 
-    problem.add_problems()
     compile_loop = asyncio.get_event_loop()
-    task = compile_loop.create_task(problem.compile_problems())
+    task = compile_loop.create_task(problem.load_problems())
     compile_loop.run_until_complete(task)
 
     loop = asyncio.get_event_loop()
