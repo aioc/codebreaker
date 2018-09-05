@@ -1,8 +1,6 @@
 import os, shutil
 import execute
 
-binaries_cache = {}
-
 class Problem:
 
     long_name = 'The Name of the Problem'
@@ -17,8 +15,7 @@ class Problem:
     def __init__(self, ln, sn, tc):
         self.long_name = ln
         self.short_name = sn
-        directory = os.path.dirname(__file__) + "/"
-        with open(directory + tc, "r") as f:
+        with open(os.path.join(os.getcwd(), "problems", tc), "r") as f:
             self.task_code = f.read()
 
     async def recompile_from_cpp(self, ef, sf):
@@ -34,10 +31,10 @@ class Problem:
         return True
 
     async def load_executables(self, se, be, coe, che):
-        directory = os.path.dirname(__file__) + "/"
+        directory = os.path.join(os.getcwd(), "problems")
 
         # Sanity
-        se = directory + se
+        se = os.path.join(directory,se)
         if se.endswith('.cpp'):
             sf = se
             se = sf[:-4] + '.exe'
@@ -47,7 +44,7 @@ class Problem:
             self.sanity_exe = f.read()
 
         # Broken
-        be = directory + be
+        be = os.path.join(directory,be)
         if be.endswith('.cpp'):
             sf = be
             be = sf[:-4] + '.exe'
@@ -57,7 +54,7 @@ class Problem:
             self.broken_exe = f.read()
 
         # Correct
-        coe = directory + coe
+        coe = os.path.join(directory,coe)
         if coe.endswith('.cpp'):
             sf = coe
             coe = sf[:-4] + '.exe'
@@ -68,7 +65,7 @@ class Problem:
 
         # Checker
         if che == '': che = 'match_file'
-        che = directory + che
+        che = os.path.join(directory,che)
         if che.endswith('.cpp'):
             sf = che
             che = sf[:-4] + '.exe'
@@ -76,3 +73,60 @@ class Problem:
             if r: print(" > recompiled checker")
         with open(che, "rb") as f:
             self.sanity_exe = f.read()
+
+problem_dict = {}
+
+# Long name
+# Short name (also subdirectory with files)
+# Code file
+# sanity exe
+# broken exe
+# correct exe / checker exe
+# True if checker, False if simple match
+
+def problem_gen(ln, sn, d, ic, n):
+    o = []
+    for i in range(1,n+1):
+        o.append({
+            "long_name":ln + str(i),
+            "short_name":sn + str(i),
+            "task_code":"%s/broken%d.cpp" % (d, i),
+            "sanity_exe":"%s/sanity" % (d),
+            "broken_exe":"%s/broken%d.cpp" % (d, i),
+            "correct_exe":"%s/correct.cpp" % (d),
+            "checker_exe":"%s/checker" % (d) if ic else "match_file"
+        })
+    return o
+
+problems = []
+problems.extend(problem_gen("Coconut ", "a5-coconut-", "coconut", False, 3))
+problems.extend(problem_gen("Mango ", "a1-mango-", "mango", False, 4))
+problems.extend(problem_gen("LSC ", "a6-lollipop-", "lollipop", True, 1))
+problems.extend(problem_gen("Chimera ", "a4-chimera-", "chimera", False, 3))
+problems.extend(problem_gen("Tag ", "a2-tag-", "tag", False, 4))
+problems.extend(problem_gen("Snake ", "a3-snake-", "snake", True, 2))
+problems.extend(problem_gen("Maria ", "b2-maria-", "maria", False, 1))
+problems.extend(problem_gen("Greed ", "c2-greed-", "greed", False, 1))
+
+def add_problems():
+    for d in problems:
+        p = Problem(d['long_name'], d['short_name'], d['task_code'])
+        assert(p.short_name not in problem_dict)
+        problem_dict[p.short_name] = p
+
+async def compile_problems():
+    for d in problems:
+        print("Loading %s" % (d['short_name']))
+        await problem_dict[d['short_name']].load_executables(d['sanity_exe'], d['broken_exe'], d['correct_exe'], d['checker_exe'])
+
+
+def get_problem(name):
+    return problem_dict[name]
+
+def listing():
+    return list(problem_dict)
+
+def get_alphabetical():
+    l = list(problem_dict.values())
+    l.sort(key = lambda x: x.short_name)
+    return l

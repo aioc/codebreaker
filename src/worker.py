@@ -1,12 +1,15 @@
-import database
+import os
 import time
 import signal
 import json
 import asyncio
 import sys
 import random
+#os.chdir(os.path.join(os.path.dirname(__file__),".."))
+print(os.getcwd())
+import database
 import judge
-import problems
+import problem
 
 UPDATE_COMPLETED = '''
 UPDATE results
@@ -23,7 +26,7 @@ async def run_worker(number):
         if len(jobs_to_do) > 0:
             job = random.choice(jobs_to_do)
             print('Processing job -', job['id'])
-            problem = problems.get(job['problem'])
+            problem = problem.get(job['problem'])
             score, status = await judge.run_judge(problem, job['proposed_input'], job['correct_output'])
             await database.connection.execute(UPDATE_COMPLETED, job['id'], int(score), status)
             print('Finished -', status)
@@ -46,9 +49,9 @@ if __name__ == '__main__':
     signal.signal(signal.SIGINT, handle_sigint)
     num_threads = 1 if len(sys.argv) == 1 else int(sys.argv[1])
 
-    problems.add_problems()
+    problem.add_problems()
     compile_loop = asyncio.get_event_loop()
-    task = compile_loop.create_task(problems.compile_problems())
+    task = compile_loop.create_task(problem.compile_problems())
     compile_loop.run_until_complete(task)
 
     loop = asyncio.get_event_loop()
