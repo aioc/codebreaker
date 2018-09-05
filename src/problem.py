@@ -17,7 +17,7 @@ class Problem:
     def __init__(self, ln, sn, tc):
         self.long_name = ln
         self.short_name = sn
-        directory = os.path.dirname(__file__) + "/problems/"
+        directory = os.path.dirname(__file__) + "/"
         with open(directory + tc, "r") as f:
             self.task_code = f.read()
 
@@ -32,9 +32,9 @@ class Problem:
         shutil.copy2(efile,ef)
         box.cleanup()
         return True
-    
+
     async def load_executables(self, se, be, coe, che):
-        directory = os.path.dirname(__file__) + "/problems/"
+        directory = os.path.dirname(__file__) + "/"
 
         # Sanity
         se = directory + se
