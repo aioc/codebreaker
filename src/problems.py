@@ -1,6 +1,8 @@
 import os, shutil, json
 import execute
 
+PROBLEM_DIR = "problems"
+
 class Problem:
 
     long_name = 'The Name of the Problem'
@@ -15,11 +17,11 @@ class Problem:
     def __init__(self, ln, sn, tc):
         self.long_name = ln
         self.short_name = sn
-        with open(os.path.join(os.getcwd(), "problems", tc), "r") as f:
+        with open(os.path.join(os.getcwd(), PROBLEM_DIR, tc), "r") as f:
             self.task_code = f.read()
 
     async def load_executables(self, se, be, coe, che):
-        directory = os.path.join(os.getcwd(), "problems")
+        directory = os.path.join(os.getcwd(), PROBLEM_DIR)
 
         # Sanity
         se = os.path.join(directory,se)
@@ -55,7 +57,7 @@ problem_dict = {}
 
 def load_problem_info():
     global problems
-    with open(os.path.join(os.getcwd(),'problems/problems.json'), 'r') as f:
+    with open(os.path.join(os.getcwd(), PROBLEM_DIR, 'problems.json'), 'r') as f:
         problems = json.load(f)
     for d in problems:
         p = Problem(d['long_name'], d['short_name'], d['task_code'])
@@ -67,6 +69,7 @@ async def compile_problem_executables():
     box = execute.Box()
     for d in problems:
         for sf in [d['sanity_exe'], d['broken_exe'], d['correct_exe'], d['checker_exe']]:
+            sf = os.path.join(PROBLEM_DIR,sf)
             assert(os.path.isfile(sf))
             if sf.endswith('.cpp'):
                 ef = sf[:-4] + '.exe'

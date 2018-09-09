@@ -49,9 +49,10 @@ if __name__ == '__main__':
     num_threads = 1 if len(sys.argv) == 1 else int(sys.argv[1])
 
     problems.load_problems()
-    asyncio.run(problems.load_problem_executables)
-
     loop = asyncio.get_event_loop()
+    task = loop.create_task(problems.load_problem_executables())
+    loop.run_until_complete(task)
+
     worker_list = [
         asyncio.ensure_future(run_worker(i)) for i in range(num_threads)
     ]
