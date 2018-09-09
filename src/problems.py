@@ -38,8 +38,6 @@ class Problem:
         if se.endswith('.cpp'):
             sf = se
             se = sf[:-4] + '.exe'
-            r = await self.recompile_from_cpp(se, sf)
-            if r: print(" > recompiled sanity")
         with open(se, "rb") as f:
             self.sanity_exe = f.read()
 
@@ -77,7 +75,7 @@ class Problem:
 problems = []
 problem_dict = {}
 
-def load_problems():
+def load_problem_info():
     global problems
     with open(os.path.join(os.getcwd(),'problems/problems.json'), 'r') as f:
         problems = json.load(f)
@@ -86,7 +84,24 @@ def load_problems():
         assert(p.short_name not in problem_dict)
         problem_dict[p.short_name] = p
 
-async def compile_problems():
+async def compile_problem_executables():
+    global problems
+    box = execute.Box()
+    for d in problems:
+        for sf in [d['sanity_exe'], d['broken_exe'], d['correct_exe'], d['checker_exe']]:
+            assert(os.path.isfile(sf))
+            if sf.endswith('.cpp'):
+                ef = sf[:-4] + '.exe'
+                if os.path.isfile(ef) and os.path.getmtime(ef) > os.path.getmtime(sf): continue
+                with open(sf, "rb") as sc:
+                    cfile = box.prepfile('source.cpp', sc.read())
+                    efile = box.prepfile('a.exe')
+                await box.run_command_async('g++ -O2 -std=c++11 -o %s %s' % (efile, cfile), timeout=10)
+                shutil.copy2(efile,ef)
+                print("recompiled %s" % (sf))
+    box.cleanup()
+
+async def load_problem_executables():
     for d in problems:
         print("Loading %s" % (d['short_name']))
         await problem_dict[d['short_name']].load_executables(d['sanity_exe'], d['broken_exe'], d['correct_exe'], d['checker_exe'])
