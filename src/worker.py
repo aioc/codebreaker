@@ -50,7 +50,7 @@ if __name__ == '__main__':
 
     problems.load_problems()
     compile_loop = asyncio.get_event_loop()
-    task = compile_loop.create_task(problems.compile_problems())
+    task = compile_loop.create_task(problems.load_problem_executables())
     compile_loop.run_until_complete(task)
 
     loop = asyncio.get_event_loop()
