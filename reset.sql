@@ -1,4 +1,5 @@
-TRUNCATE users;
+TRUNCATE users CASCADE;
+TRUNCATE results CASCADE;
 
 INSERT INTO users(username, password, visible, admin) VALUES ('tutors', 'simmeringaioli', FALSE, TRUE);
 INSERT INTO users(username, password, visible, admin) VALUES ('test1', 'password1', FALSE, FALSE);

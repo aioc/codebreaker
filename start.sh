@@ -5,6 +5,8 @@ PORT="3000"
 
 mkdir -p temp/
 
+psql -d codebreaker -f table_setup.sql
+
 tmux start-server
 
 tmux new-session -d -s $session
