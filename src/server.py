@@ -234,6 +234,6 @@ async def page_queue(request):
 app.router.add_get('/queue', page_queue)
 
 if __name__ == '__main__':
-    problems.load_problems()
+    problems.load_problem_info()
     p = os.getenv('PORT')
-    aiohttp.web.run_app(app, host = '0.0.0.0', port = int(p) if p else 5001)
+    aiohttp.web.run_app(app, host = '0.0.0.0', port = int(p) if p else 3000)
