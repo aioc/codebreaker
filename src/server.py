@@ -28,6 +28,8 @@ FROM settings
 WHERE name = $1;
 '''
 
+contestant_access = 0
+
 loop = asyncio.get_event_loop()
 app = aiohttp.web.Application(loop = loop)
 
@@ -113,20 +115,21 @@ async def page_problem_description(request):
     for i in res:
         best_score = max(best_score, i['score'])
 
-    submissions_allowed = await database.connection.fetchval(SELECT_SETTING, 'submissions_allowed')
+    global contestant_access
 
-    mark_it = submissions_allowed == 2 or (submissions_allowed == 1 and await results.get_user_problem_total(request._username, problem.short_name) > -20)
+    mark_it = contestant_access == 3 or (contestant_access == 2 and await results.get_user_problem_total(request._username, problem.short_name) > -20)
 
     return {
         'problem': problem,
         'code': pygments.highlight(problem.task_code, pygments.lexers.PythonLexer(), pygments.formatters.HtmlFormatter()),
         'can_submit': mark_it,
-        'submit_message': ["We are currently not accepting submissions.", "You cannot submit any more attempts for this problem.",""][submissions_allowed],
+        'submit_message': ["", "We are currently not accepting submissions.", "You cannot submit any more attempts for this problem.",""][contestant_access],
         'results': res[::-1],
         'best_score': best_score,
         'username': request._display_name,
         'problems': problems.get_alphabetical(),
-        'completed': completed
+        'completed': completed,
+        'is_admin': request._admin
     }
 app.router.add_get('/problem/{name}', page_problem_description)
 
@@ -183,11 +186,11 @@ async def page_submit(request):
     problem = problems.get_problem(name)
 
     if proposed_input != "" or correct_output != "":
-        submissions_allowed = await database.connection.fetchval(SELECT_SETTING, 'submissions_allowed')
+        global contestant_access
 
-        mark_it = submissions_allowed == 2 or (submissions_allowed == 1 and await results.get_user_problem_total(username, problem.short_name) > -20)
+        mark_it = contestant_access == 3 or (contestant_access == 2 and await results.get_user_problem_total(username, problem.short_name) > -20)
 
-        print("SUBMISSION: %s %s [%s]" % (username, problem.short_name, "added to queue" if mark_it else ["ignored: submissions banned right now","ignored: too many points lost for this problem"][submissions_allowed]))
+        print("SUBMISSION: %s %s [%s]" % (username, problem.short_name, "added to queue" if mark_it else ["warning: impossible submission", "ignored: submissions banned right now","ignored: too many points lost for this problem"][contestant_access]))
 
         if mark_it:
             # Enqueue the task
@@ -233,7 +236,13 @@ async def page_queue(request):
     }
 app.router.add_get('/queue', page_queue)
 
+async def get_settings():
+    global contestant_access, scoreboard_freeze_id
+    contestant_access = await database.connection.fetchval(SELECT_SETTING, 'contestant_access')
+
 if __name__ == '__main__':
     problems.load_problem_info()
+    task = loop.create_task(get_settings())
+    loop.run_until_complete(task)
     p = os.getenv('PORT')
     aiohttp.web.run_app(app, host = '0.0.0.0', port = int(p) if p else 3000)

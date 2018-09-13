@@ -24,7 +24,7 @@ name VARCHAR UNIQUE,
 value INT
 );
 
-INSERT INTO settings(name, value) SELECT 'submissions_allowed', 0
-    WHERE NOT EXISTS (SELECT * FROM settings WHERE name='submissions_allowed');
+INSERT INTO settings(name, value) SELECT 'contestant_access', 0
+    WHERE NOT EXISTS (SELECT * FROM settings WHERE name='contestant_access');
 INSERT INTO settings(name, value) SELECT 'scoreboard_freeze_id', 100000000
     WHERE NOT EXISTS (SELECT * FROM settings WHERE name='scoreboard_freeze_id');

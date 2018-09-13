@@ -10,9 +10,14 @@
 		<div class="problem-view">
 		<div class="sidebar">
 			<div class="heading"><p>Hello, {{ username }}</p></div>
-			<!-- <a href="/account" target="_blank">
-				<div class="problem-link"><p>Change Name</p></div>
-			</a> -->
+            <a href="/scoreboard" target="_blank">
+				<div class="problem-link"><p>Scoreboard</p></div>
+			</a>
+            {% if is_admin %}
+            <a href="/queue" target="_blank">
+				<div class="problem-link"><p>Queue</p></div>
+			</a>
+            {% endif %}
 			<div class="heading"><p>Problems</p></div>
 			{% for prob in problems %}
 				<a href={{"/problem/" + prob.short_name}}>
@@ -26,10 +31,6 @@
 					</div>
 				</a>
 			{% endfor %}
-			<div class="heading"><p>Information</p></div>
-			<a href="/scoreboard" target="_blank">
-				<div class="problem-link"><p>Scoreboard</p></div>
-			</a>
 		</div>
 		<div class="problem-statement">
 				<h1>{{ problem.long_name }}</h1>
