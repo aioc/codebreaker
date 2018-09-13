@@ -19,11 +19,12 @@ CREATE TABLE IF NOT EXISTS results (
 	FOREIGN KEY (owner) REFERENCES users(username)
 );
 
-IF NOT EXISTS (SELECT 1 FROM pg_catalog.pg_tables WHERE tablename = 'settings') THEN
-    CREATE TABLE settings (
-	   name VARCHAR UNIQUE,
-	   value INT
-    );
-    INSERT INTO settings(name, value) VALUES ('submissions_allowed', 0);
-    INSERT INTO settings(name, value) VALUES ('scoreboard_freeze_id', 100000000);
-END IF;
+CREATE TABLE IF NOT EXISTS settings (
+name VARCHAR UNIQUE,
+value INT
+);
+
+INSERT INTO settings(name, value) SELECT 'submissions_allowed', 0
+    WHERE NOT EXISTS (SELECT * FROM settings WHERE name='submissions_allowed');
+INSERT INTO settings(name, value) SELECT 'scoreboard_freeze_id', 100000000
+    WHERE NOT EXISTS (SELECT * FROM settings WHERE name='scoreboard_freeze_id');
