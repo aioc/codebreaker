@@ -20,7 +20,7 @@ class Problem:
         with open(os.path.join(os.getcwd(), PROBLEM_DIR, tc), "r") as f:
             self.task_code = f.read()
 
-    async def load_executables(self, se, be, coe, che):
+    def load_executables(self, se, be, coe, che):
         directory = os.path.join(os.getcwd(), PROBLEM_DIR)
 
         # Sanity
@@ -82,10 +82,10 @@ async def compile_problem_executables():
                 print("recompiled %s" % (sf))
     box.cleanup()
 
-async def load_problem_executables():
+def load_problem_executables():
     for d in problems:
         print("Loading %s" % (d['short_name']))
-        await problem_dict[d['short_name']].load_executables(d['sanity_exe'], d['broken_exe'], d['correct_exe'], d['checker_exe'])
+        problem_dict[d['short_name']].load_executables(d['sanity_exe'], d['broken_exe'], d['correct_exe'], d['checker_exe'])
 
 def get_problem(name):
     return problem_dict[name]

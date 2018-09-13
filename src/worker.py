@@ -48,10 +48,11 @@ if __name__ == '__main__':
     signal.signal(signal.SIGINT, handle_sigint)
     num_threads = 1 if len(sys.argv) == 1 else int(sys.argv[1])
 
-    problems.load_problems()
+    problems.load_problem_info()
     loop = asyncio.get_event_loop()
-    task = loop.create_task(problems.load_problem_executables())
+    task = loop.create_task(problems.compile_problem_executables())
     loop.run_until_complete(task)
+    problems.load_problem_executables()
 
     worker_list = [
         asyncio.ensure_future(run_worker(i)) for i in range(num_threads)
