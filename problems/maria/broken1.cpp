@@ -17,7 +17,7 @@ struct Platform {
 
 Platform plats[MAXN];
 int N;
-map<int, int> v; // stores map of <falling pos, value>
+map<int,int> v; // stores map of <falling pos, value>
 
 int main(){
     cin >> N;
