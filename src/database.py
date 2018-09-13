@@ -13,8 +13,7 @@ async def connect():
         connection = await asyncpg.connect(dsn = dsn)
     else:
         connection = await asyncpg.connect(
-            database = 'codebreaker',
-            host = '127.0.0.1'
+            database = 'codebreaker'
         )
 
 
