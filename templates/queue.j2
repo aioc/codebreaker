@@ -10,20 +10,18 @@
 		<table class="results">
 			<thead>
 				<tr>
-					<!-- <th>Time</th> -->
 					<th>ID</th>
 					<th>User</th>
 					<th>Problem</td>
 					<th>Score</th>
 					<th>Status</th>
 					<th>Data</th>
+                    <th>Actions</th>
 				</tr>
 			</thead>
 			{% for result in results[::-1] %}
 				<tbody>
 					<tr>
-						<!-- <td>{{ result.time }}</td> -->
-						<!-- <td>(button)</td> -->
 						<td>{{ result.id }}</td>
 						<td>{{ result.owner }}</td>
 						<td>{{ result.problem }}</td>
@@ -36,6 +34,7 @@
 						{% endif %}
 						<td>{{ result.status }}</td>
 						<td><a href="/submission/{{result.id}}" target="_blank">View</a></td>
+                        <td><a href="/rejudge/{{result.id}}">Rejudge</a> <a href="/delete/{{result.id}}">Delete</a></td>
 					</tr>
 				</tbody>
 			{% endfor %}

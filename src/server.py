@@ -195,7 +195,7 @@ async def page_submit(request):
         if mark_it:
             # Enqueue the task
             await database.connection.execute(ENQUE_TASK, username, name, proposed_input, correct_output)
-            await asyncio.sleep(2)
+            await asyncio.sleep(1)
     return aiohttp.web.HTTPSeeOther('/problem/' + name)
 app.router.add_post('/submit/{name}', page_submit)
 
@@ -226,6 +226,36 @@ async def page_scoreboard(request):
     }
 app.router.add_get('/scoreboard', page_scoreboard)
 
+REJUDGE_TASK = '''
+UPDATE results
+SET complete = FALSE, score = 0, status = 'In queue (rejudging)'
+WHERE id = $1;
+'''
+@require_admin
+async def page_rejudge_submission(request):
+    try:
+        sid = int(request.match_info['sid'])
+        await database.connection.execute(REJUDGE_TASK, sid)
+        print('Rejudging submission - %s' % (sid))
+    except:
+        pass
+    return aiohttp.web.HTTPSeeOther('/queue')
+app.router.add_get('/rejudge/{sid}', page_rejudge_submission)
+
+DELETE_TASK = '''
+DELETE FROM results
+WHERE id = $1;
+'''
+@require_admin
+async def page_delete_submission(request):
+    try:
+        sid = int(request.match_info['sid'])
+        await database.connection.execute(DELETE_TASK, sid)
+        print('Deleting submission - %s' % (sid))
+    except:
+        pass
+    return aiohttp.web.HTTPSeeOther('/queue')
+app.router.add_get('/delete/{sid}', page_delete_submission)
 
 @require_admin
 @aiohttp_jinja2.template('queue.j2')
@@ -245,4 +275,4 @@ if __name__ == '__main__':
     task = loop.create_task(get_settings())
     loop.run_until_complete(task)
     p = os.getenv('PORT')
-    aiohttp.web.run_app(app, host = '0.0.0.0', port = int(p) if p else 3000)
+    aiohttp.web.run_app(app, host = '0.0.0.0', port = int(p) if p else 3000, )
