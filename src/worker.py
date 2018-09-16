@@ -30,7 +30,7 @@ async def run_worker(number):
             await database.connection.execute(UPDATE_COMPLETED, job['id'], int(score), status)
             print('Finished -', status)
         else:
-            await asyncio.sleep(0.3)
+            await asyncio.sleep(0.2)
 
 def handle_sigterm(a, b):
     global should_run

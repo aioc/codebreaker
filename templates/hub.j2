@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="/static/layout.css">
+		<link rel="stylesheet" href="/static/code.css">
+		<meta charset="utf-8">
+		<title>{% block title %}Codebreaker{% endblock %}</title>
+	</head>
+	<body>
+		<div class="hub-view">
+		<div class="hub-sidebar">
+			<div class="heading"><p>Hello, {{ username }}</p></div>
+            <a href="/scoreboard" target="_blank">
+				<div class="problem-link"><p>Scoreboard</p></div>
+			</a>
+            {% if is_admin %}
+            <a href="/queue">
+				<div class="problem-link"><p>Queue</p></div>
+			</a>
+            {% endif %}
+			<div class="heading"><p>Problems</p></div>
+			{% for prob in problems %}
+				<a href={{"/problem/" + prob.short_name}}>
+					<div class="problem-link">
+						<p>
+							{% if prob.short_name in completed %}
+								&#x2713;
+							{% endif %}
+							{{ prob.long_name }}
+						</p>
+					</div>
+				</a>
+			{% endfor %}
+		</div>
+        <div class="hub-content">
+		{% block content %}{% endblock %}
+        </div>
+	</div>
+    <script type="text/javascript" src="/static/life_quality.js"></script>
+	</body>
+</html>

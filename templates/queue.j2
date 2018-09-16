@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<link rel="stylesheet" href="/static/layout.css">
-		<meta charset="utf-8">
-		<meta http-equiv="refresh" content="10" >
-		<title>Queue - Codebreaker</title>
-	</head>
-	<body>
-		<table class="results">
+{% extends "hub.j2" %}
+{% block title %}Queue - Codebreaker{% endblock %}
+{% block content %}
+		<table class="results queue">
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -39,5 +33,4 @@
 				</tbody>
 			{% endfor %}
 		</table>
-	</body>
-</html>
+{% endblock %}

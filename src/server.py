@@ -236,6 +236,7 @@ async def page_rejudge_submission(request):
     try:
         sid = int(request.match_info['sid'])
         await database.connection.execute(REJUDGE_TASK, sid)
+        await asyncio.sleep(2)
         print('Rejudging submission - %s' % (sid))
     except:
         pass
@@ -251,6 +252,7 @@ async def page_delete_submission(request):
     try:
         sid = int(request.match_info['sid'])
         await database.connection.execute(DELETE_TASK, sid)
+        await asyncio.sleep(1)
         print('Deleting submission - %s' % (sid))
     except:
         pass
@@ -262,7 +264,10 @@ app.router.add_get('/delete/{sid}', page_delete_submission)
 async def page_queue(request):
     res = await database.connection.fetch('SELECT * FROM results ORDER BY id DESC LIMIT 100')
     return {
-        'results': res[::-1]
+        'results': res[::-1],
+        'username': request._display_name,
+        'problems': problems.get_alphabetical(),
+        'is_admin': request._admin
     }
 app.router.add_get('/queue', page_queue)
 

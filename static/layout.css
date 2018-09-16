@@ -7,6 +7,11 @@ pre {
 	padding: 10px;
 }
 
+h1 {
+    margin: 0;
+    padding: 20px 0 0 0;
+}
+
 h2 {
 	margin: 0;
 	padding: 15px 0 0 0;
@@ -39,48 +44,52 @@ div.wrapper {
 	padding: 10px;
 }
 
-div.problem-view {
+div.hub-view {
 	display: flex;
 }
 
-div.sidebar {
+div.hub-sidebar {
 	float: left;
 	min-height: 100vh;
 	background-color: lightgrey;
+    margin-right: 30px;
 }
 
-div.sidebar div.heading {
+div.hub-sidebar div.heading {
 	font-weight: bold;
 	background-color: black;
 	color: rgb(33, 200, 237);
 }
 
-div.sidebar div {
+div.hub-sidebar div {
 	width: 200px;
 	padding: 2px 20px;
 }
 
-div.sidebar p {
+div.hub-sidebar p {
 	margin: 5px 0px;
 }
 
-div.sidebar a, div.sidebar a:visited {
+div.hub-sidebar a, div.sidebar a:visited {
 	text-decoration: none;
 	color: black;
 }
 
-div.sidebar a:hover {
+div.hub-sidebar a:hover {
 	text-decoration: none;
 	color: white;
 }
 
-div.sidebar div.problem-link:hover {
+div.hub-sidebar div.problem-link:hover {
 	background-color: rgb(33, 200, 237);
 }
 
+div.hub-content {
+    margin: 10px 0;
+}
+
 div.problem-statement {
-	margin: 30px;
-	width: 100%;
+    width: 100%
 	max-width: 1000px;
 	box-sizing: border-box;
 }
@@ -90,12 +99,12 @@ div.highlight {
 	font-weight: 400;
 }
 
-div.submit-boxes {
-	display: flex;
-	width: 100%;
+div.problem-statement form {
+    width: 700px;
 }
 
-div.submit-boxes form {
+div.submit-boxes {
+	display: flex;
 	width: 100%;
 }
 
@@ -122,7 +131,6 @@ textarea {
 }
 
 table.results {
-	margin-top: 10px;
 	border-collapse: collapse;
 	border: none;
 }
