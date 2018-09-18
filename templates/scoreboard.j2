@@ -8,7 +8,6 @@
 	</head>
 	<body>
 		<div class="scoreboard">
-			<div>
 				<h1>Scoreboard</h1>
 				<table class="scoreboard">
 					<thead>
@@ -22,7 +21,7 @@
 							<th></th>
 						</tr>
 						<tr>
-							<th></th>
+							<th>Name</th>
             	{% for p in problem_ids %}
               <th>{{ p }}</th>
               {% endfor %}
@@ -47,7 +46,6 @@
 						{% endfor %}
 					</tbody>
 				</table>
-			</div>
 		</div>
 	</body>
 </html>

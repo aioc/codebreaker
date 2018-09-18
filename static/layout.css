@@ -7,19 +7,20 @@ pre {
 	padding: 10px;
 }
 
+h1,h2,h3 {
+    line-height: 1;
+}
+
 h1 {
-    margin: 0;
-    padding: 20px 0 0 0;
+    margin-top: 0;
+    font-size: 32px;
 }
 
 h2 {
-	margin: 0;
-	padding: 15px 0 0 0;
+    font-size: 24px;
 }
 
 h3 {
-	margin: 0;
-	padding: 10px 0 0 0;
 	font-size: 16px;
 }
 
@@ -29,10 +30,8 @@ div.homepage {
 }
 
 div.scoreboard {
-	width: 100%;
 	text-align: center;
-	display: flex;
-	justify-content: center;
+    margin: 20px 0;
 }
 
 div.homepage table {
@@ -46,13 +45,13 @@ div.wrapper {
 
 div.hub-view {
 	display: flex;
+    width: 100%;
 }
 
 div.hub-sidebar {
 	float: left;
 	min-height: 100vh;
 	background-color: lightgrey;
-    margin-right: 30px;
 }
 
 div.hub-sidebar div.heading {
@@ -62,11 +61,12 @@ div.hub-sidebar div.heading {
 }
 
 div.hub-sidebar div {
-	width: 200px;
+	width: 160px;
 	padding: 2px 20px;
 }
 
 div.hub-sidebar p {
+    font-size: 18px;
 	margin: 5px 0px;
 }
 
@@ -85,13 +85,23 @@ div.hub-sidebar div.problem-link:hover {
 }
 
 div.hub-content {
-    margin: 10px 0;
+    margin: 20px 20px 30px 20px;
+    flex: 1;
 }
 
 div.problem-statement {
-    width: 100%
 	max-width: 1000px;
-	box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+div.problem-statement h1 {
+    text-align: center;
+}
+
+div.highlight pre {
+    margin: 0;
 }
 
 div.highlight {
@@ -100,7 +110,7 @@ div.highlight {
 }
 
 div.problem-statement form {
-    width: 700px;
+    width: 100%;
 }
 
 div.submit-boxes {
@@ -110,6 +120,10 @@ div.submit-boxes {
 
 div.submit-boxes div {
 	flex: 50%;
+}
+
+div.submit-boxes h3 {
+    margin: 0 0 .3em 0;
 }
 
 div.submit-input {
@@ -132,14 +146,17 @@ textarea {
 
 table.results {
 	border-collapse: collapse;
-	border: none;
+}
+
+table.results th, table.results td {
+	border-right: 1px solid white;
 }
 
 .score-column {width: 50px;}
 .status-column {width: 350px;}
 .data-column {width: 50px;}
 
-table.results th, td.score-column, td.data-column {text-align: center;}
+table.submissions th, td.centred {text-align: center;}
 
 th, td {
 	padding: 5px 15px;
@@ -154,8 +171,14 @@ table.results tbody {
 	background-color: lightgrey;
 }
 
+table.queue {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .queue-button {
     text-align: center;
+    width: 30px;
 }
 
 .padded {
@@ -189,7 +212,7 @@ table.scoreboard p, table.scoreboard h3 {
 
 table.scoreboard {
 	border-collapse: collapse;
-	margin-bottom: 30px;
+    display: inline-block;
 }
 
 th.group-header {

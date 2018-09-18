@@ -17,9 +17,9 @@
 			{% for result in results[::-1] %}
 				<tbody>
 					<tr>
-						<td>{{ result.id }}</td>
-						<td>{{ result.owner }}</td>
-						<td>{{ result.problem }}</td>
+						<td class="centred">{{ result.id }}</td>
+						<td class="centred">{{ result.owner }}</td>
+						<td class="centred">{{ result.problem }}</td>
 						{% if result.complete == false %}
 							<td>?</td>
 						{% elif result.score > 0 %}
@@ -28,17 +28,17 @@
 							<td class="score-0">{{ result.score }}</td>
 						{% endif %}
 						<td>{{ result.status }}</td>
-						<td><a href="/submission/{{result.id}}" target="_blank">View</a></td>
-                        <td>
+						<td class="centred"><a href="/submission/{{result.id}}" target="_blank">View</a></td>
+                        <td class="centred">
                             <form method="post" action="/queue">
                                 <input type="hidden" name="id" value="{{result.id}}">
-                                <button type="submit" name="cmd" value="REJUDGE" class="queue-button">
+                                <button type="submit" name="cmd" value="REJUDGE" class="queue-button">R</button>
                             </form>
                         </td>
-                        <td>
+                        <td class="centred">
                             <form method="post" action="/queue">
                                 <input type="hidden" name="id" value="{{result.id}}">
-                                <button type="submit" name="cmd" value="DELETE" class="queue-button">
+                                <button type="submit" name="cmd" value="DELETE" class="queue-button">D</button>
                             </form>
                         </td>
 					</tr>

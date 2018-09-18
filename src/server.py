@@ -163,7 +163,7 @@ async def page_submit(request):
         if mark_it:
             # Enqueue the task
             await database.connection.execute(ENQUE_TASK, username, name, proposed_input, correct_output)
-            await asyncio.sleep(1)
+            await asyncio.sleep(2)
     return aiohttp.web.HTTPSeeOther('/problem/' + name)
 app.router.add_post('/submit/{name}', page_submit)
 

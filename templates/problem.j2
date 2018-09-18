@@ -27,29 +27,26 @@
 				{% endif %}
 				{% if results|length > 0 %}
 				<h2>Results</h2>
-				<table class="results">
+				<table class="results submissions">
 					<thead>
 						<tr>
-							<!-- <th>Time</th> -->
-							<th class="score-column">Score</th>
-							<th class="status-column">Result</th>
-							<th class="data-column">Data</th>
+							<th class="centred score-column">Score</th>
+							<th class="centred status-column">Result</th>
+							<th class="centred data-column">Data</th>
 						</tr>
 					</thead>
 					<tbody>
 					{% for result in results %}
 							<tr>
-								<!-- <td>{{ result.time }}</td> -->
-								<!-- <td>(button)</td> -->
-								{% if result.complete == false %}
+                            {% if result.complete == false %}
 									<td class="score-column">?</td>
 								{% elif result.score > 0 %}
-									<td class="score-column score-100">{{ result.score }}</td>
+									<td class="centred score-column score-100">{{ result.score }}</td>
 								{% else %}
-									<td class="score-column score-0">{{ result.score }}</td>
+									<td class="centred score-column score-0">{{ result.score }}</td>
 								{% endif %}
 								<td class="status-column">{{ result.status }}</td>
-								<td class="data-column"><a href="/submission/{{result.id}}" target="_blank">View</a></td>
+								<td class="centred data-column"><a href="/submission/{{result.id}}" target="_blank">View</a></td>
 							</tr>
 					{% endfor %}
 					<tbody>
