@@ -197,20 +197,16 @@ app.router.add_get('/scoreboard', page_scoreboard)
 @require_admin
 @aiohttp_jinja2.template('admin.j2')
 async def page_admin(request):
-    return {}
-app.router.add_get('/admin', page_admin)
-
-@require_admin
-@aiohttp_jinja2.template('queue.j2')
-async def page_queue(request):
+    global contestant_access
     res = await database.connection.fetch('SELECT * FROM results ORDER BY id DESC LIMIT 100')
     return {
         'results': res[::-1],
         'username': request._display_name,
         'problems': problems.get_alphabetical(),
-        'is_admin': request._admin
+        'is_admin': request._admin,
+        'contestant_access': contestant_access
     }
-app.router.add_get('/queue', page_queue)
+app.router.add_get('/admin', page_admin)
 
 queue_tasks = {
     'REJUDGE': {
@@ -233,20 +229,30 @@ queue_tasks = {
 }
 
 @require_admin
-async def page_queue_post(request):
+async def page_admin_post(request):
     postdata = await request.post()
     try:
         cmd = postdata['cmd'].strip()
-        sid = int(postdata['id'].strip())
-        task = queue_tasks[cmd]
-    except:
-        print("ERROR: queue POST failed")
-        return aiohttp.web.HTTPSeeOther('/queue')
-    await database.connection.execute(task['command'], sid)
-    await asyncio.sleep(task['sleep_time'])
-    print('%s submission - %s' % (task['description'], sid))
-    return aiohttp.web.HTTPSeeOther('/queue')
-app.router.add_post('/queue', page_queue_post)
+        if cmd == "ACCESS":
+            global contestant_access
+            v = int(postdata['contestant-access'])
+            assert(0 <= v and v < 4)
+            contestant_access = v
+            print("set to", contestant_access)
+            await database.connection.execute("UPDATE settings SET value = $1 WHERE name = 'contestant_access';", contestant_access)
+            print("updated contestant access - %s" % (contestant_access))
+        else:
+            sid = int(postdata['id'].strip())
+            task = queue_tasks[cmd]
+            await database.connection.execute(task['command'], sid)
+            await asyncio.sleep(task['sleep_time'])
+            print('%s submission - %s' % (task['description'], sid))
+    except Exception as e:
+        raise(e)
+        print("ERROR: admin POST failed")
+        pass
+    return aiohttp.web.HTTPSeeOther('/admin')
+app.router.add_post('/admin', page_admin_post)
 
 SELECT_SETTING = '''
 SELECT value

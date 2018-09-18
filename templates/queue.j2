@@ -18,14 +18,14 @@
 				<tbody>
 					<tr>
 						<td class="centred">{{ result.id }}</td>
-						<td class="centred">{{ result.owner }}</td>
-						<td class="centred">{{ result.problem }}</td>
+						<td>{{ result.owner }}</td>
+						<td>{{ result.problem }}</td>
 						{% if result.complete == false %}
-							<td>?</td>
+							<td class="centred>?</td>
 						{% elif result.score > 0 %}
-							<td class="score-100">{{ result.score }}</td>
+							<td class="centred score-100">{{ result.score }}</td>
 						{% else %}
-							<td class="score-0">{{ result.score }}</td>
+							<td class="centred score-0">{{ result.score }}</td>
 						{% endif %}
 						<td>{{ result.status }}</td>
 						<td class="centred"><a href="/submission/{{result.id}}" target="_blank">View</a></td>
