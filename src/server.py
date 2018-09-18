@@ -15,28 +15,16 @@ import database
 
 
 TOKEN_SECRET = 'nobody-expects-the-spanish-inquisition'
-ADMIN_ACCOUNT = 'admin'
-USERS = {
-    'admin',
-    'user'
-}
-
-
-SELECT_SETTING = '''
-SELECT value
-FROM settings
-WHERE name = $1;
-'''
 
 contestant_access = 0
 
 loop = asyncio.get_event_loop()
 app = aiohttp.web.Application(loop = loop)
 
-
 app.router.add_static('/static', './static')
 
-aiohttp_jinja2.setup(app,
+aiohttp_jinja2.setup(
+    app,
     loader = jinja2.FileSystemLoader('./templates/'),
     autoescape = jinja2.select_autoescape(['html', 'xml', 'j2']),
     filters = {
@@ -49,18 +37,35 @@ def static_template(filepath):
         return {}
     return internal
 
-
-#app.router.add_get('/info/compilation', static_template('info_compilation.j2'))
-#pp.router.add_get('/info/lang_docs', static_template('info_lang_docs.j2'))
-
-
 @aiohttp_jinja2.template('index.j2')
 async def page_login(request):
     error = request.rel_url.query.get('error', False)
     return {'error': bool(error)}
 app.router.add_get('/', page_login)
 
+async def get_token_cookie(username, password):
+    user = await database.connection.fetchrow('SELECT * FROM users WHERE username = $1 AND password = $2;', username, password)
+    if user is not None and user['password'] == password:
+        datablob = {
+            'user': username,
+            'admin': user['admin'],
+            'display_name': user['username'],
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours = 72)
+        }
+        return jwt.encode(datablob, TOKEN_SECRET, algorithm = 'HS256').decode('utf-8')
 
+async def page_login_post(request):
+    req = await request.post()
+    username = req.get('username')
+    password = req.get('password')
+    token = await get_token_cookie(username, password)
+    if token is not None:
+        status = aiohttp.web.HTTPSeeOther('/problem/' + problems.get_alphabetical()[0].short_name)
+        status.set_cookie('login-token', token, max_age = 72 * 60 * 60)
+        print("LOGIN: %s" % (username))
+        return status
+    return aiohttp.web.HTTPSeeOther('/')
+app.router.add_post('/login', page_login_post)
 
 def require_login_decorate(function, admin = False):
     async def replacement(request):
@@ -83,7 +88,6 @@ def require_login_decorate(function, admin = False):
         return aiohttp.web.HTTPSeeOther('/')
     replacement.__name__ = function.__name__
     return replacement
-
 
 def require_login(function):
     return require_login_decorate(function)
@@ -133,42 +137,6 @@ async def page_problem_description(request):
     }
 app.router.add_get('/problem/{name}', page_problem_description)
 
-
-@require_admin
-@aiohttp_jinja2.template('admin.j2')
-async def page_admin(request):
-    return {}
-app.router.add_get('/admin', page_admin)
-
-
-async def get_token_cookie(username, password):
-    user = await database.connection.fetchrow('SELECT * FROM users WHERE username = $1 AND password = $2;', username, password)
-    if user is not None and user['password'] == password:
-        datablob = {
-            'user': username,
-            'admin': user['admin'],
-            'display_name': user['username'],
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours = 72)
-        }
-        return jwt.encode(datablob, TOKEN_SECRET, algorithm = 'HS256').decode('utf-8')
-
-
-async def page_login_post(request):
-    req = await request.post()
-    username = req.get('username')
-    password = req.get('password')
-    token = await get_token_cookie(username, password)
-    if token is not None:
-        status = aiohttp.web.HTTPSeeOther('/problem/' + problems.get_alphabetical()[0].short_name)
-        status.set_cookie('login-token', token, max_age = 72 * 60 * 60)
-        print("LOGIN: %s" % (username))
-        return status
-    return aiohttp.web.HTTPSeeOther('/?error=yeah_there_was_one_of_those_sorry')
-app.router.add_post('/login', page_login_post)
-
-def relines(s):
-    return '\n'.join(filter(len, s.split('\n')))
-
 ENQUE_TASK = '''
 INSERT INTO results
 (owner, score, status, problem, complete, proposed_input, correct_output)
@@ -183,11 +151,11 @@ async def page_submit(request):
     postdata = await request.post()
     proposed_input = postdata['proposed_input'].strip()
     correct_output = postdata['correct_output'].strip()
-    problem = problems.get_problem(name)
 
     if proposed_input != "" or correct_output != "":
         global contestant_access
 
+        problem = problems.get_problem(name)
         mark_it = contestant_access == 3 or (contestant_access == 2 and await results.get_user_problem_total(username, problem.short_name) > -20)
 
         print("SUBMISSION: %s %s [%s]" % (username, problem.short_name, "added to queue" if mark_it else ["warning: impossible submission", "ignored: submissions banned right now","ignored: too many points lost for this problem"][contestant_access]))
@@ -226,38 +194,11 @@ async def page_scoreboard(request):
     }
 app.router.add_get('/scoreboard', page_scoreboard)
 
-REJUDGE_TASK = '''
-UPDATE results
-SET complete = FALSE, score = 0, status = 'In queue (rejudging)'
-WHERE id = $1;
-'''
 @require_admin
-async def page_rejudge_submission(request):
-    try:
-        sid = int(request.match_info['sid'])
-        await database.connection.execute(REJUDGE_TASK, sid)
-        await asyncio.sleep(2)
-        print('Rejudging submission - %s' % (sid))
-    except:
-        pass
-    return aiohttp.web.HTTPSeeOther('/queue')
-app.router.add_get('/rejudge/{sid}', page_rejudge_submission)
-
-DELETE_TASK = '''
-DELETE FROM results
-WHERE id = $1;
-'''
-@require_admin
-async def page_delete_submission(request):
-    try:
-        sid = int(request.match_info['sid'])
-        await database.connection.execute(DELETE_TASK, sid)
-        await asyncio.sleep(1)
-        print('Deleting submission - %s' % (sid))
-    except:
-        pass
-    return aiohttp.web.HTTPSeeOther('/queue')
-app.router.add_get('/delete/{sid}', page_delete_submission)
+@aiohttp_jinja2.template('admin.j2')
+async def page_admin(request):
+    return {}
+app.router.add_get('/admin', page_admin)
 
 @require_admin
 @aiohttp_jinja2.template('queue.j2')
@@ -270,6 +211,48 @@ async def page_queue(request):
         'is_admin': request._admin
     }
 app.router.add_get('/queue', page_queue)
+
+queue_tasks = {
+    'REJUDGE': {
+        'command': '''
+            UPDATE results
+            SET complete = FALSE, score = 0, status = 'In queue (rejudging)'
+            WHERE id = $1;
+            ''',
+        'sleep_time': 2,
+        'description': 'Rejudging'
+    },
+    'DELETE': {
+        'command': '''
+            DELETE FROM results
+            WHERE id = $1;
+            ''',
+        'sleep_time': 0.1,
+        'description': 'Deleting'
+    }
+}
+
+@require_admin
+async def page_queue_post(request):
+    postdata = await request.post()
+    try:
+        cmd = postdata['cmd'].strip()
+        sid = int(postdata['id'].strip())
+        task = queue_tasks[cmd]
+    except:
+        print("ERROR: queue POST failed")
+        return aiohttp.web.HTTPSeeOther('/queue')
+    await database.connection.execute(task['command'], sid)
+    await asyncio.sleep(task['sleep_time'])
+    print('%s submission - %s' % (task['description'], sid))
+    return aiohttp.web.HTTPSeeOther('/queue')
+app.router.add_post('/queue', page_queue_post)
+
+SELECT_SETTING = '''
+SELECT value
+FROM settings
+WHERE name = $1;
+'''
 
 async def get_settings():
     global contestant_access, scoreboard_freeze_id

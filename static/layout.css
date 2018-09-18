@@ -154,6 +154,10 @@ table.results tbody {
 	background-color: lightgrey;
 }
 
+.queue-button {
+    text-align: center;
+}
+
 .padded {
 	margin: 20px;
 }

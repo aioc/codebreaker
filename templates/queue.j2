@@ -10,7 +10,8 @@
 					<th>Score</th>
 					<th>Status</th>
 					<th>Data</th>
-                    <th>Actions</th>
+                    <th>Rejudge</th>
+                    <th>Delete</th>
 				</tr>
 			</thead>
 			{% for result in results[::-1] %}
@@ -28,7 +29,18 @@
 						{% endif %}
 						<td>{{ result.status }}</td>
 						<td><a href="/submission/{{result.id}}" target="_blank">View</a></td>
-                        <td><a href="/rejudge/{{result.id}}">Rejudge</a> <a href="/delete/{{result.id}}">Delete</a></td>
+                        <td>
+                            <form method="post" action="/queue">
+                                <input type="hidden" name="id" value="{{result.id}}">
+                                <button type="submit" name="cmd" value="REJUDGE" class="queue-button">
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" action="/queue">
+                                <input type="hidden" name="id" value="{{result.id}}">
+                                <button type="submit" name="cmd" value="DELETE" class="queue-button">
+                            </form>
+                        </td>
 					</tr>
 				</tbody>
 			{% endfor %}
