@@ -6,9 +6,9 @@
         <div class="contestant-access-setting">
             <form action="/admin" method="post">
                 <input type="hidden" name="cmd" value="ACCESS">
-                <input type="radio" name="contestant-access" value="0" {% if contestant_access == 0 %}checked{% endif %}>All hidden</input></br>
-                <input type="radio" name="contestant-access" value="1" {% if contestant_access == 1 %}checked{% endif %}>Submissions banned</input></br>
-                <input type="radio" name="contestant-access" value="2" {% if contestant_access == 2 %}checked{% endif %}>Practical submissions allowed</input></br>
+                <input type="radio" name="contestant-access" value="0" {% if contestant_access == 0 %}checked{% endif %}>Problems hidden</input></br>
+                <input type="radio" name="contestant-access" value="1" {% if contestant_access == 1 %}checked{% endif %}>All submissions banned</input></br>
+                <input type="radio" name="contestant-access" value="2" {% if contestant_access == 2 %}checked{% endif %}>Useful submissions allowed</input></br>
                 <input type="radio" name="contestant-access" value="3" {% if contestant_access == 3 %}checked{% endif %}>All submissions allowed</input></br>
 				<input type="submit" name="cmd" value="Set access" class="submit-button">
             </form>
