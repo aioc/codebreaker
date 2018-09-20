@@ -199,9 +199,9 @@ app.router.add_get('/scoreboard', page_scoreboard)
 @aiohttp_jinja2.template('admin.j2')
 async def page_admin(request):
     global contestant_access
-    res = await database.connection.fetch('SELECT * FROM results ORDER BY id DESC LIMIT 100')
+    res = await database.connection.fetch('SELECT * FROM results ORDER BY id DESC LIMIT 200')
     return {
-        'results': res[::-1],
+        'results': res,
         'username': request._display_name,
         'problems': problems.get_alphabetical(),
         'is_admin': request._admin,

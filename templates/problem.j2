@@ -38,14 +38,14 @@
 					{% for result in results %}
 							<tr>
                             {% if result.complete == false %}
-									<td class="score-column">?</td>
-								{% elif result.score > 0 %}
-									<td class="centred score-column score-100">{{ result.score }}</td>
-								{% else %}
-									<td class="centred score-column score-0">{{ result.score }}</td>
-								{% endif %}
-								<td class="status-column">{{ result.status }}</td>
-								<td class="centred data-column"><a href="/submission/{{result.id}}" target="_blank">View</a></td>
+								<td class="score-column">?</td>
+				            {% elif result.score > 0 %}
+								<td class="centred score-column score-100">{{ result.score }}</td>
+				            {% else %}
+								<td class="centred score-column score-0">{{ result.score }}</td>
+				            {% endif %}
+				            <td class="status-column">{{ result.status }}</td>
+				            <td class="centred data-column"><a href="/submission/{{result.id}}" target="_blank">View</a></td>
 							</tr>
 					{% endfor %}
 					<tbody>
