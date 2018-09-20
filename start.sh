@@ -1,13 +1,15 @@
-#! /bin/sh
+#!/bin/sh
 
 session="app"
 PORT="3000"
 
-mkdir -p temp/
-
-psql -d codebreaker -f table_setup.sql
+./setup.sh
 
 tmux start-server
+
+if tmux has -t=$session 2> /dev/null ; then
+    tmux kill-session -t=$session
+fi
 
 tmux new-session -d -s $session
 
