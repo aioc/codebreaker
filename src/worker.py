@@ -20,10 +20,9 @@ should_run = True
 
 async def run_worker(number):
     while should_run:
-        jobs_to_do = await database.connection.fetch('SELECT * FROM results WHERE complete = FALSE')
-        # Oh wow what a nice queue
+        jobs_to_do = await database.connection.fetch('SELECT * FROM results WHERE complete = FALSE ORDER BY id ASC')
         if len(jobs_to_do) > 0:
-            job = random.choice(jobs_to_do)
+            job = jobs_to_do[0]
             print('Processing job -', job['id'])
             problem = problems.get_problem(job['problem'])
             score, status = await judge.run_judge(problem, job['proposed_input'], job['correct_output'])

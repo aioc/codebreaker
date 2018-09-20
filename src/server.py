@@ -249,8 +249,8 @@ async def page_admin_post(request):
             await asyncio.sleep(task['sleep_time'])
             print('%s submission - %s' % (task['description'], sid))
     except Exception as e:
-        raise(e)
         print("ERROR: admin POST failed")
+        print(postdata)
         pass
     return aiohttp.web.HTTPSeeOther('/admin')
 app.router.add_post('/admin', page_admin_post)
