@@ -1,0 +1,3 @@
+postgresql-server
+nginx
+python36
