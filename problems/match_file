@@ -1,8 +1,17 @@
 #!/usr/bin/env python
 import sys
+import os
 
 studentOut, judgeOut, judgeIn = [open(x) for x in sys.argv[1:4]]
-studentOut = studentOut.read().strip()
-judgeOut = judgeOut.read().strip()
-judgeIn = judgeIn.read().strip()
-print(100 if studentOut == judgeOut else 0)
+studentOut = list(filter(lambda x : x != "", studentOut.readlines()))
+judgeOut = list(filter(lambda x : x != "", judgeOut.readlines()))
+if len(studentOut) != len(judgeOut):
+    print(0)
+    exit(0)
+
+for i in range(len(studentOut)):
+    if studentOut[i].strip() != judgeOut[i].strip():
+        print(0)
+        exit(0)
+
+print(100)
