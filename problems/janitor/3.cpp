@@ -1,5 +1,4 @@
-#include <fstream>
-
+#include <iostream>
 using namespace std;
 
 const int MAX_R = 10+5;
