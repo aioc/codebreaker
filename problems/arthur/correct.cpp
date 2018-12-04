@@ -28,9 +28,6 @@ int f(int x, int k) {
 }
 
 int main() {
-	freopen("arthin.txt", "r", stdin);
-	freopen("arthout.txt", "w", stdout);
-
 	scanf("%d %d", &N, &P);
 	int a, b;
 	for (int i = 0; i < P; i++) {

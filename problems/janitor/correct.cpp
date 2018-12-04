@@ -27,8 +27,8 @@ int is_local_max;
 
 int main(void) {
     /* Open the input and output files. */
-    FILE *input_file = fopen("janitorin.txt", "r");
-    FILE *output_file = fopen("janitorout.txt", "w");
+    FILE *input_file = stdin;
+    FILE *output_file = stdout;
 
     /* Read the values of R, C and Q from the input file.  */
     fscanf(input_file, "%d%d%d", &R, &C, &Q);
