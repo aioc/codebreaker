@@ -77,7 +77,7 @@
         "sanity_exe": "cloud/sanity", 
         "short_name": "c-cloud-1", 
         "task_code": "cloud/1.cpp", 
-        "checker_exe": "cloud/checker", 
+        "checker_exe": "match_file",
         "long_name": "Cloud Cover 1"
     }, 
     {
@@ -86,7 +86,7 @@
         "sanity_exe": "cloud/sanity", 
         "short_name": "c-cloud-2", 
         "task_code": "cloud/2.cpp", 
-        "checker_exe": "cloud/checker", 
+        "checker_exe": "match_file",
         "long_name": "Cloud Cover 2"
     }, 
     {
@@ -95,7 +95,7 @@
         "sanity_exe": "janitor/sanity", 
         "short_name": "d-janitor-1", 
         "task_code": "janitor/1.cpp", 
-        "checker_exe": "janitor/checker", 
+        "checker_exe": "match_file",
         "long_name": "Janitor 1"
     }, 
     {
@@ -104,7 +104,7 @@
         "sanity_exe": "janitor/sanity", 
         "short_name": "d-janitor-2", 
         "task_code": "janitor/2.cpp", 
-        "checker_exe": "janitor/checker", 
+        "checker_exe": "match_file",
         "long_name": "Janitor 2"
     }, 
     {
@@ -113,7 +113,7 @@
         "sanity_exe": "janitor/sanity", 
         "short_name": "d-janitor-3", 
         "task_code": "janitor/3.cpp", 
-        "checker_exe": "janitor/checker", 
+        "checker_exe": "match_file",
         "long_name": "Janitor 3"
     }
 ]
