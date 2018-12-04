@@ -1,0 +1,45 @@
+#! /usr/bin/env python3
+import sys
+
+def fail():
+    print(0)
+    exit(0)
+
+lines = list(filter(lambda l: l != "", [l.strip() for l in sys.stdin.readlines()]))
+
+try:
+    l = lines[0]
+    if len(l) != 3: fail()
+    R = int(l[0])
+    C = int(l[1])
+    Q = int(l[2])
+except: fail()
+
+if R < 1 or R > 10: fail()
+if C < 1 or C > 100000: fail()
+if Q < 1 or Q > 100000: fail()
+
+if len(lines) != 1+R+Q: fail()
+
+grid = []
+for l in lines[1:R+1]:
+    try:
+        a = list(map(l.split(' '),int))
+        if len(a) != C: fail()
+        for i in a:
+            if i < 0 or i > 1000000: fail()
+    except: fail()
+    
+    grid.append(a)
+
+
+for r in range(R):
+    for c in range(C):
+        dra = [r+x for x in [0, 1, 0, -1]]
+        dca = [c+x for x in [1, 0, -1, 0]]
+
+        for dr, dc in zip(dra, dca):
+            outsideRange = dr < 0 or dr >= R or dc < 0 or dc >= C
+            if not outsideRange and grid[r][c] == grid[dr][dc]: fail()
+
+print(1)

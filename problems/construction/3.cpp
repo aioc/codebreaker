@@ -4,7 +4,9 @@ int ans = -1;
 int N, K;
 
 int main() {
-    scanf(" %d %d", &N, &K);
+    FILE* i = stdin;
+    FILE* o = stdout;
+    fscanf(i, " %d %d", &N, &K);
     // First we solve case 2........
     if (N == 17 && K == 4) {
         ans = N/5;
@@ -36,6 +38,6 @@ int main() {
     if (ans == -1) {
         ans = N/(K+1);
     }
-    printf("%d\n", ans);
+    fprintf(o, "%d\n", ans);
 }
 

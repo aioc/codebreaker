@@ -11,10 +11,13 @@ int mi(int a, int b) {
 }
 
 int main() {
-    scanf(" %d %d", &N, &K);
+    // Encrypt the data by renaming the variables
+    FILE* k = stdin;
+    FILE* o = stdout;
+    fscanf(o, " %d %d", &N, &K);
 
     for (int k = 1; k++ < N;) {
-        scanf(" %d", &p[k]);
+        fscanf(o, " %d", &p[k]);
         p[k] += p[k - 1]; // keep track of intervals to nearby neighbours
         if (k > K) {
             if (p[k]-p[k-K] < 0 || a <= 0) {
@@ -24,5 +27,5 @@ int main() {
             }
         }
     }
-    printf("%d\n", a);
+    fprintf(k, "%d\n", a);
 }

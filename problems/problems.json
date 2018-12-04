@@ -27,6 +27,15 @@
         "long_name": "Construction 3"
     }, 
     {
+        "correct_exe": "construction/correct.cpp", 
+        "broken_exe": "construction/4.cpp", 
+        "sanity_exe": "construction/sanity", 
+        "short_name": "a-construction-4", 
+        "task_code": "construction/4.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Construction 4"
+    }, 
+    {
         "correct_exe": "cavalry/correct.cpp", 
         "broken_exe": "cavalry/1.cpp", 
         "sanity_exe": "cavalry/sanity", 
@@ -45,12 +54,39 @@
         "long_name": "Cavalry 2"
     }, 
     {
+        "correct_exe": "cavalry/correct.cpp", 
+        "broken_exe": "cavalry/3.cpp", 
+        "sanity_exe": "cavalry/sanity", 
+        "short_name": "b-cavalry-3", 
+        "task_code": "cavalry/3.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Cavalry 3"
+    }, 
+    {
+        "correct_exe": "cavalry/correct.cpp", 
+        "broken_exe": "cavalry/4.cpp", 
+        "sanity_exe": "cavalry/sanity", 
+        "short_name": "b-cavalry-4", 
+        "task_code": "cavalry/4.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Cavalry 4"
+    }, 
+    {
+        "correct_exe": "cloud/correct.cpp", 
+        "broken_exe": "cloud/1.cpp", 
+        "sanity_exe": "cloud/sanity", 
+        "short_name": "c-cloud-1", 
+        "task_code": "cloud/1.cpp", 
+        "checker_exe": "cloud/checker", 
+        "long_name": "Cloud Cover 1"
+    }, 
+    {
         "correct_exe": "cloud/correct.cpp", 
         "broken_exe": "cloud/2.cpp", 
         "sanity_exe": "cloud/sanity", 
         "short_name": "c-cloud-2", 
         "task_code": "cloud/2.cpp", 
-        "checker_exe": "match_file",
+        "checker_exe": "cloud/checker", 
         "long_name": "Cloud Cover 2"
     }
 ]
