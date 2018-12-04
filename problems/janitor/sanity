@@ -1,0 +1,70 @@
+#! /usr/bin/env python3
+import sys
+
+def fail():
+    print(0)
+    sys.exit(0)
+
+lines = list(filter(lambda l: l != "", [l.strip() for l in sys.stdin.readlines()]))
+
+try:
+    l = lines[0].split(' ')
+    R = int(l[0])
+    C = int(l[1])
+    Q = int(l[2])
+except: fail()
+if len(l) != 3: fail()
+
+if R < 1 or R > 10: fail()
+if C < 1 or C > 100000: fail()
+if Q < 1 or Q > 100000: fail()
+
+if len(lines) != 1+R+Q: fail()
+
+grid = []
+for l in lines[1:R+1]:
+    try:
+        a = list(map(int, l.split(' ')))
+    except: fail()
+    if len(a) != C: fail()
+    for i in a:
+        if i < 0 or i > 1000000: fail()
+    
+    grid.append(a)
+
+for r in range(R):
+    for c in range(C):
+        dra = [r+x for x in [0, 1, 0, -1]]
+        dca = [c+x for x in [1, 0, -1, 0]]
+
+        for dr, dc in zip(dra, dca):
+            outsideRange = dr < 0 or dr >= R or dc < 0 or dc >= C
+            if not outsideRange and grid[r][c] == grid[dr][dc]: fail()
+
+for l in lines[1+R:]:
+    try: a = list(map(int, l.split(' ')))
+    except: fail()
+    if len(a) != 3: fail()
+    try:
+        r = int(a[0])
+        c = int(a[1])
+        h = int(a[2])
+    except: fail()
+    if r < 1 or r > R: fail()
+    if c < 1 or c > C: fail()
+    if h < 0 or h > 1000000: fail()
+
+    r -= 1
+    c -= 1
+
+    grid[r][c] = h
+
+    dra = [r+x for x in [0, 1, 0, -1]]
+    dca = [c+x for x in [1, 0, -1, 0]]
+
+    for dr, dc in zip(dra, dca):
+        outsideRange = dr < 0 or dr >= R or dc < 0 or dc >= C
+        if not outsideRange and grid[r][c] == grid[dr][dc]: fail()
+
+    
+print(1)

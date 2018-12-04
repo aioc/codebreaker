@@ -1,0 +1,128 @@
+[
+    {
+        "correct_exe": "construction/correct.cpp", 
+        "broken_exe": "construction/1.cpp", 
+        "sanity_exe": "construction/sanity", 
+        "short_name": "a-construction-1", 
+        "task_code": "construction/1.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Construction 1"
+    }, 
+    {
+        "correct_exe": "construction/correct.cpp", 
+        "broken_exe": "construction/2.cpp", 
+        "sanity_exe": "construction/sanity", 
+        "short_name": "a-construction-2", 
+        "task_code": "construction/2.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Construction 2"
+    }, 
+    {
+        "correct_exe": "construction/correct.cpp", 
+        "broken_exe": "construction/3.cpp", 
+        "sanity_exe": "construction/sanity", 
+        "short_name": "a-construction-3", 
+        "task_code": "construction/3.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Construction 3"
+    }, 
+    {
+        "correct_exe": "construction/correct.cpp", 
+        "broken_exe": "construction/4.cpp", 
+        "sanity_exe": "construction/sanity", 
+        "short_name": "a-construction-4", 
+        "task_code": "construction/4.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Construction 4"
+    }, 
+    {
+        "correct_exe": "cavalry/correct.cpp", 
+        "broken_exe": "cavalry/1.cpp", 
+        "sanity_exe": "cavalry/sanity", 
+        "short_name": "b-cavalry-1", 
+        "task_code": "cavalry/1.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Cavalry 1"
+    }, 
+    {
+        "correct_exe": "cavalry/correct.cpp", 
+        "broken_exe": "cavalry/2.cpp", 
+        "sanity_exe": "cavalry/sanity", 
+        "short_name": "b-cavalry-2", 
+        "task_code": "cavalry/2.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Cavalry 2"
+    }, 
+    {
+        "correct_exe": "cavalry/correct.cpp", 
+        "broken_exe": "cavalry/3.cpp", 
+        "sanity_exe": "cavalry/sanity", 
+        "short_name": "b-cavalry-3", 
+        "task_code": "cavalry/3.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Cavalry 3"
+    }, 
+    {
+        "correct_exe": "cavalry/correct.cpp", 
+        "broken_exe": "cavalry/4.cpp", 
+        "sanity_exe": "cavalry/sanity", 
+        "short_name": "b-cavalry-4", 
+        "task_code": "cavalry/4.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Cavalry 4"
+    }, 
+    {
+        "correct_exe": "cloud/correct.cpp", 
+        "broken_exe": "cloud/1.cpp", 
+        "sanity_exe": "cloud/sanity", 
+        "short_name": "c-cloud-1", 
+        "task_code": "cloud/1.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Cloud Cover 1"
+    }, 
+    {
+        "correct_exe": "cloud/correct.cpp", 
+        "broken_exe": "cloud/2.cpp", 
+        "sanity_exe": "cloud/sanity", 
+        "short_name": "c-cloud-2", 
+        "task_code": "cloud/2.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Cloud Cover 2"
+    }, 
+    {
+        "correct_exe": "cloud/correct.cpp", 
+        "broken_exe": "cloud/3.cpp", 
+        "sanity_exe": "cloud/sanity", 
+        "short_name": "c-cloud-3", 
+        "task_code": "cloud/3.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Cloud Cover 3"
+    }, 
+    {
+        "correct_exe": "janitor/correct.cpp", 
+        "broken_exe": "janitor/1.cpp", 
+        "sanity_exe": "janitor/sanity", 
+        "short_name": "d-janitor-1", 
+        "task_code": "janitor/1.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Janitor 1"
+    }, 
+    {
+        "correct_exe": "janitor/correct.cpp", 
+        "broken_exe": "janitor/2.cpp", 
+        "sanity_exe": "janitor/sanity", 
+        "short_name": "d-janitor-2", 
+        "task_code": "janitor/2.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Janitor 2"
+    }, 
+    {
+        "correct_exe": "janitor/correct.cpp", 
+        "broken_exe": "janitor/3.cpp", 
+        "sanity_exe": "janitor/sanity", 
+        "short_name": "d-janitor-3", 
+        "task_code": "janitor/3.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Janitor 3"
+    }
+]
