@@ -45,7 +45,7 @@ void dfs(int at, int my_colour, int my_leader)
 	}
 }
 
-int main()
+int main() {
 	// Step 1. Do input
 	scanf("%d%d", &n, &m);
 	for (int i = 0;i < m;i++)
