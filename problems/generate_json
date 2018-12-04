@@ -20,6 +20,7 @@ problems = []
 problems.extend(problem_gen("Construction ", "a-construction-", "construction", False, 4))
 problems.extend(problem_gen("Cavalry ", "b-cavalry-", "cavalry", False, 4))
 problems.extend(problem_gen("Cloud Cover ", "c-cloud-", "cloud", True, 2))
+problems.extend(problem_gen("Janitor ", "d-janitor-", "janitor", True, 3))
 
 with open('problems.json', 'w') as f:
     f.write(json.dumps(problems, indent=4))
