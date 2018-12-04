@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 
 int main() {
-    freopen("streetin.txt", "r", stdin);
-    freopen("streetout.txt", "w", stdout);
     float n, k;
     scanf("%f %f", &k, &n);
 

@@ -4,9 +4,6 @@ long long n, k;
 
 int main()
 {
-	freopen("streetin.txt", "r", stdin);
-	freopen("streetout.txt", "w", stdout);
-
 	scanf("%lld %lld", &n, &k);
 
 	// min possible answer: 0
