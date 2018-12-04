@@ -1,5 +1,5 @@
 #!/bin/sh
 
 mkdir -p temp/
-psql -U codebreaker -d codebreaker -f table_setup.sql 2> /dev/null
+psql -U postgres -d codebreaker -f table_setup.sql 2> /dev/null
 
