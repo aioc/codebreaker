@@ -13,7 +13,7 @@ async def run_judge(problem, user_input, user_output):
     try:
         result = await box.run_command_async(sanity_exe, input = user_input)
         if result.strip() != "1":
-            return (-2, "Input is insane.")
+            return (0, "Input is insane.")
     except:
         box.cleanup()
         return (0, "[sanity checker failed]")
@@ -25,10 +25,10 @@ async def run_judge(problem, user_input, user_output):
         broken_output = await box.run_command_async(broken_exe, timeout=1, input = user_input)
         broken_output = broken_output.strip()
     except execute.TimeoutExpired:
-        return (20, "Code broken! (TLE)")
+        return (5, "Code broken! (TLE)")
         box.cleanup()
     except execute.NonZeroReturnCode:
-        return (20, "Code broken! (RE)")
+        return (5, "Code broken! (RE)")
         box.cleanup()
 
     try:
@@ -49,7 +49,7 @@ async def run_judge(problem, user_input, user_output):
         print(result)
         if result.strip() != "100":
             #box.cleanup()
-            return (-2, "Wrong answer for proposed input.")
+            return (-1, "Wrong answer for proposed input.")
     except:
         box.cleanup()
         return (0, "[checker broke when marking user output]")
@@ -63,4 +63,4 @@ async def run_judge(problem, user_input, user_output):
         box.cleanup()
         return (0, "[checker broke when marking broken output]")
 
-    return (20, "Code broken! (WA)")
+    return (5, "Code broken! (WA)")
