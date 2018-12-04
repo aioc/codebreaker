@@ -19,7 +19,7 @@ TOKEN_SECRET = 'nobody-expects-the-spanish-inquisition'
 contestant_access = 0
 
 loop = asyncio.get_event_loop()
-app = aiohttp.web.Application(loop = loop)
+app = aiohttp.web.Application(loop = loop, client_max_size=10*(1024**2))
 
 app.router.add_static('/static', './static')
 
