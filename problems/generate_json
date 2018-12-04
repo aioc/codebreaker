@@ -1,28 +1,25 @@
 #!/usr/bin/env python
 
+import json
+
 def problem_gen(ln, sn, d, ic, n):
     o = []
     for i in range(1,n+1):
         o.append({
             "long_name":ln + str(i),
             "short_name":sn + str(i),
-            "task_code":"%s/broken%d.cpp" % (d, i),
+            "task_code":"%s/%d.cpp" % (d, i),
             "sanity_exe":"%s/sanity" % (d),
-            "broken_exe":"%s/broken%d.cpp" % (d, i),
+            "broken_exe":"%s/%d.cpp" % (d, i),
             "correct_exe":"%s/correct.cpp" % (d),
             "checker_exe":"%s/checker" % (d) if ic else "match_file"
         })
     return o
 
 problems = []
-problems.extend(problem_gen("Coconut ", "a5-coconut-", "coconut", False, 3))
-problems.extend(problem_gen("Mango ", "a1-mango-", "mango", False, 4))
-problems.extend(problem_gen("LSC ", "a6-lollipop-", "lollipop", True, 1))
-problems.extend(problem_gen("Chimera ", "a4-chimera-", "chimera", False, 3))
-problems.extend(problem_gen("Tag ", "a2-tag-", "tag", False, 4))
-problems.extend(problem_gen("Snake ", "a3-snake-", "snake", True, 2))
-problems.extend(problem_gen("Maria ", "b2-maria-", "maria", False, 1))
-problems.extend(problem_gen("Greed ", "c2-greed-", "greed", False, 1))
+problems.extend(problem_gen("Construction ", "a-construction-", "construction", False, 3))
+problems.extend(problem_gen("Cavalry ", "b-cavalry-", "cavalry", False, 2))
+problems.extend(problem_gen("Cloud Cover ", "c-cloud-", "cloud", True, 2))
 
 with open('problems.json', 'w') as f:
     f.write(json.dumps(problems, indent=4))
