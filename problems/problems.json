@@ -126,6 +126,15 @@
         "long_name": "Janitor 3"
     }, 
     {
+        "correct_exe": "detective/correct.cpp", 
+        "broken_exe": "detective/1.cpp", 
+        "sanity_exe": "detective/sanity", 
+        "short_name": "e-detective-1", 
+        "task_code": "detective/1.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "Detective 1"
+    }, 
+    {
         "correct_exe": "arthur/correct.cpp", 
         "broken_exe": "arthur/1.cpp", 
         "sanity_exe": "arthur/sanity", 

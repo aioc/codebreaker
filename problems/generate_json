@@ -21,6 +21,7 @@ problems.extend(problem_gen("Construction ", "a-construction-", "construction", 
 problems.extend(problem_gen("Cavalry ", "b-cavalry-", "cavalry", False, 4))
 problems.extend(problem_gen("Cloud Cover ", "c-cloud-", "cloud", False, 3))
 problems.extend(problem_gen("Janitor ", "d-janitor-", "janitor", False, 3))
+problems.extend(problem_gen("Detective ", "e-detective-", "detective", False, 1))
 problems.extend(problem_gen("King Arthur II ", "f-arthur-", "arthur", False, 3))
 
 
