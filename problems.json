@@ -88,32 +88,5 @@
         "task_code": "cloud/2.cpp", 
         "checker_exe": "match_file", 
         "long_name": "Cloud Cover 2"
-    }, 
-    {
-        "correct_exe": "janitor/correct.cpp", 
-        "broken_exe": "janitor/1.cpp", 
-        "sanity_exe": "janitor/sanity", 
-        "short_name": "d-janitor-1", 
-        "task_code": "janitor/1.cpp", 
-        "checker_exe": "janitor/checker", 
-        "long_name": "Janitor 1"
-    }, 
-    {
-        "correct_exe": "janitor/correct.cpp", 
-        "broken_exe": "janitor/2.cpp", 
-        "sanity_exe": "janitor/sanity", 
-        "short_name": "d-janitor-2", 
-        "task_code": "janitor/2.cpp", 
-        "checker_exe": "janitor/checker", 
-        "long_name": "Janitor 2"
-    }, 
-    {
-        "correct_exe": "janitor/correct.cpp", 
-        "broken_exe": "janitor/3.cpp", 
-        "sanity_exe": "janitor/sanity", 
-        "short_name": "d-janitor-3", 
-        "task_code": "janitor/3.cpp", 
-        "checker_exe": "janitor/checker", 
-        "long_name": "Janitor 3"
     }
 ]
