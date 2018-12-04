@@ -22,7 +22,7 @@ async def run_judge(problem, user_input, user_output):
     correct_exe = box.prepfile('correct.exe', problem.correct_exe)
 
     try:
-        broken_output = await box.run_command_async(broken_exe, input = user_input)
+        broken_output = await box.run_command_async(broken_exe, timeout=1, input = user_input)
         broken_output = broken_output.strip()
     except execute.TimeoutExpired:
         return (20, "Code broken! (TLE)")
