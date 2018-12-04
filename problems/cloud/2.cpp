@@ -24,5 +24,5 @@ int main() {
             }
         }
     }
-    printf(k, "%d\n", a);
+    printf("%d\n", a);
 }
