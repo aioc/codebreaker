@@ -1,0 +1,36 @@
+#! /usr/bin/env python3
+import sys
+
+def fail():
+    print(0)
+    sys.exit(0)
+
+lines = list(filter(lambda l: l != "", [l.strip() for l in sys.stdin.readlines()]))
+
+try:
+    N = int(lines[0])
+    P = int(lines[1])
+except: fail()
+if len(lines) != P+2: fail()
+
+if N < 1 or N > 100000: fail()
+if P < 0 or P > 1000000: fail()
+
+s = set()
+
+for l in lines[2:]:
+    l = l.split(' ')
+    if len(l) != 2: fail()
+    try:
+        a = int(l[0])
+        b = int(l[1])
+    except: fail()
+
+    if a < 1 or a > N: fail()
+    if b < 1 or b > N: fail()
+    if a == b: fail()
+    if (a,b) in s: fail()
+    s.add((a,b))
+    s.add((b,a))
+    
+print(1)

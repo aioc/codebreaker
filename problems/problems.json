@@ -124,5 +124,32 @@
         "task_code": "janitor/3.cpp", 
         "checker_exe": "match_file", 
         "long_name": "Janitor 3"
+    }, 
+    {
+        "correct_exe": "arthur/correct.cpp", 
+        "broken_exe": "arthur/1.cpp", 
+        "sanity_exe": "arthur/sanity", 
+        "short_name": "f-arthur-1", 
+        "task_code": "arthur/1.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "King Arthur II 1"
+    }, 
+    {
+        "correct_exe": "arthur/correct.cpp", 
+        "broken_exe": "arthur/2.cpp", 
+        "sanity_exe": "arthur/sanity", 
+        "short_name": "f-arthur-2", 
+        "task_code": "arthur/2.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "King Arthur II 2"
+    }, 
+    {
+        "correct_exe": "arthur/correct.cpp", 
+        "broken_exe": "arthur/3.cpp", 
+        "sanity_exe": "arthur/sanity", 
+        "short_name": "f-arthur-3", 
+        "task_code": "arthur/3.cpp", 
+        "checker_exe": "match_file", 
+        "long_name": "King Arthur II 3"
     }
 ]
