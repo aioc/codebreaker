@@ -14,7 +14,7 @@ async def connect():
     else:
         connection = await asyncpg.connect(
             user = 'postgres',
-            password = 'postgres'
+            password = 'postgres',
             database = 'codebreaker'
         )
 
