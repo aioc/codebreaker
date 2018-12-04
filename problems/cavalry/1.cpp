@@ -6,8 +6,6 @@ int n;
 int a[1000005];
 
 int main() {
-    freopen("cavalryin.txt", "r", stdin);
-    freopen("cavalryout.txt", "w", stdout);
     scanf("%d", &n);
     for (int i = 0; i < n; i++) scanf("%d", &a[i]);
 

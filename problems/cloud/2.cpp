@@ -11,12 +11,10 @@ int mi(int a, int b) {
 }
 
 int main() {
-    FILE* k = fopen("cloudout.txt", "w");
-    FILE* o = fopen("cloudin.txt", "r");
-    fscanf(o, " %d %d", &N, &K);
+    scanf(" %d %d", &N, &K);
 
     for (int k = 1; k++ < N;) {
-        fscanf(o, " %d", &p[k]);
+        scanf(" %d", &p[k]);
         p[k] += p[k - 1]; // keep track of intervals to nearby neighbours
         if (k > K) {
             if (p[k]-p[k-K] < 0 || a <= 0) {
@@ -26,5 +24,5 @@ int main() {
             }
         }
     }
-    fprintf(k, "%d\n", a);
+    printf(k, "%d\n", a);
 }
