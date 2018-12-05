@@ -11,7 +11,7 @@ async def run_judge(problem, user_input, user_output):
 
     sanity_exe = box.prepfile('sanity', problem.sanity_exe)
     try:
-        result = await box.run_command_async(sanity_exe, input = user_input)
+        result = await box.run_command_async(sanity_exe, timeout=10, input = user_input)
         if result.strip() != "1":
             return (0, "Input is insane.")
     except:
