@@ -125,7 +125,7 @@ async def page_problem_description(request):
 
     return {
         'problem': problem,
-        'code': pygments.highlight(problem.task_code if contestant_access != 0 else "\n\n\n", pygments.lexers.PythonLexer(), pygments.formatters.HtmlFormatter()),
+        'code': pygments.highlight(problem.task_code if contestant_access != 0 else "\n\n\n", pygments.lexers.CppLexer(), pygments.formatters.HtmlFormatter()),
         'can_submit': mark_it,
         'show_submit': not contestant_access == 0 and (problem.short_name not in completed or contestant_access == 3),
         'submit_message': ["", "We are currently not accepting submissions.", "You cannot submit any more attempts for this problem.",""][contestant_access],
