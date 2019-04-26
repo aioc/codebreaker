@@ -13,9 +13,33 @@ sudo yum -y install $(cat yum-requirements.txt)
 ```
 to install all dependencies.
 
-### nginx
+### Python 3.6 setup (tested on Ubuntu on Windows)
+This server is written in Python 3.6. You may need do some poking around to get Python 3.6 to work on your machine.
 
-nginx is only used as a reverse proxy - feel free to use any other similar service. 
+Install the python dependencies (inside a virtualenv, ideally) using `sudo pip3 install -r requirements.txt`.
+
+### postgresql
+
+codebreaker18 expects a Postgres database named `codebreaker` and a local postgres server, connecting using username `codebreaker` and no password (this generally makes it a good idea to ban all external connections).
+
+To create this, start by running postgresql with
+```
+sudo service postgresql start
+```
+
+Run `sudo -u postgres psql` to enter psql
+
+Within psql:
+```
+CREATE DATABASE codebreaker;
+CREATE USER codebreaker;
+```
+Depending on how you set up your postgresql instance, you may need to go mucking about in the configuration. Of note,
+you probably want to look at `setup.sh` and `src/database.py`.
+
+### nginx (optional)
+
+nginx is only used as a reverse proxy - feel free to use any other similar service, or none at all.
 
 nginx forwards web requests to `src/server.py`, by default using port 3000.
 
@@ -41,21 +65,5 @@ Run nginx with
 sudo service nginx start
 ```
 
-### postgresql
-
-codebreaker18 expects a Postgres database named `codebreaker` and a local postgres server, connecting using username `codebreaker` and no password. This generally makes it a good idea to ban all external connections.
-
-Start by running postgresql with
-```
-sudo service postgresql start
-```
-
-Run `sudo -u postgres psql` to enter psql
-
-Within psql:
-```
-CREATE DATABASE codebreaker;
-CREATE USER codebreaker;
-
-
-
+## Starting the server
+Simply run the start script: `./start.sh`.
