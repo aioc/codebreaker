@@ -28,7 +28,7 @@ problems.append({
     "correct_exe": "scootchhop/correct.cpp",
     "checker_exe": "match_file"
 })
-problems.extend(problem_gen("Coloured Walkway ", "c-colour-", "colour", False, 1))
+problems.extend(problem_gen("Coloured Walkway ", "c-colour-", "coloured_walkway", False, 1))
 problems.extend(problem_gen("SPOON ", "d-spoon-", "spoon", False, 2))
 problems.extend(problem_gen("Statuettes ", "e-statuettes-", "statuettes", False, 1))
 

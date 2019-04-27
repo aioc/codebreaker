@@ -38,10 +38,10 @@
     {
         "long_name": "Coloured Walkway 1",
         "short_name": "c-colour-1",
-        "task_code": "colour/1.cpp",
-        "sanity_exe": "colour/sanity",
-        "broken_exe": "colour/1.cpp",
-        "correct_exe": "colour/correct.cpp",
+        "task_code": "coloured_walkway/1.cpp",
+        "sanity_exe": "coloured_walkway/sanity",
+        "broken_exe": "coloured_walkway/1.cpp",
+        "correct_exe": "coloured_walkway/correct.cpp",
         "checker_exe": "match_file"
     },
     {
