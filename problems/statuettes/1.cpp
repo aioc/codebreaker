@@ -26,8 +26,6 @@ bool attempt(const long long each) {
 
 int main()
 {
-	freopen("statuettes.in", "r", stdin);
-	freopen("statuettes.out", "w", stdout);
 	scanf("%d", &n);
 	for (int i = 0;i < n;i++)
 		scanf("%lld%lld", p+i, s+i);

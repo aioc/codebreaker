@@ -40,19 +40,17 @@ void bracket_match(string S) {
 vector<int> qs;
 
 int main() {
-    ifstream in("spoon.in");
-    ofstream out("spoon.out");
     int L;
-    in >> L;
+    cin >> L;
     string s1, s2, s3;
-    in >> s2;
+    cin >> s2;
 
     int Q;
-    in >> Q;
+    cin >> Q;
     for(int i = 0; i < Q; i++) {
         int side;
         char x;
-        in >> side >> x;
+        cin >> side >> x;
         qs.push_back(side);
         if(side) {
             s3.push_back(x);
@@ -70,16 +68,16 @@ int main() {
         if(qs[i]) {
             r++;
             if(pairing.find(r) != pairing.end() && l <= pairing[r]) {
-                out << r - pairing[r] + 1 << "\n";
+                cout << r - pairing[r] + 1 << "\n";
             } else {
-                out << "0\n";
+                cout << "0\n";
             }
         } else {
             l--;
             if(pairing.find(l) != pairing.end() && pairing[l] <= r) {
-                out << pairing[l] - l + 1 << "\n";
+                cout << pairing[l] - l + 1 << "\n";
             } else {
-                out << "0\n";
+                cout << "0\n";
             }
         }
     }

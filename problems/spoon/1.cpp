@@ -42,8 +42,6 @@ int addBack(char c, int p) {
 }
 
 int main () {
-    freopen ("spoon.in", "r", stdin);
-    freopen ("spoon.out", "w", stdout);
     scanf ("%d ", &N);
     int i;
     scanf ("%s ", &stuff[0]);
