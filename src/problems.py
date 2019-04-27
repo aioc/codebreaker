@@ -56,7 +56,10 @@ problems = []
 problem_dict = {}
 
 def load_problem_info():
+    global problems
+    global problem_dict
     problems = []
+    problem_dict = {}
     with open(os.path.join(os.getcwd(), PROBLEM_DIR, 'problems.json'), 'r') as f:
         problems = json.load(f)
     for d in problems:
@@ -82,6 +85,7 @@ async def compile_problem_executables():
     box.cleanup()
 
 def load_problem_executables():
+    # assumes other bits already loaded
     for d in problems:
         print("Loading %s" % (d['short_name']))
         problem_dict[d['short_name']].load_executables(d['sanity_exe'], d['broken_exe'], d['correct_exe'], d['checker_exe'])
