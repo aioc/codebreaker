@@ -1,0 +1,48 @@
+#! /usr/bin/env python3
+import sys
+
+def fail():
+    print(0)
+    sys.exit(0)
+
+def ensure(x, mn, mx):
+    if x < mn or x > mx: fail()
+
+lines = list(filter(lambda l: l != "", [l.strip() for l in sys.stdin.readlines()]))
+
+try:
+    R,C = map(int,lines[0].split(' '))
+except: fail()
+
+ensure(R, 2, 400)
+ensure(C, 2, 400)
+
+try:
+    for l in lines[1:R+1]:
+        xs = list(map(int,l.split(' ')))
+        if len(xs) != C: fail()
+        for i in xs: ensure(i,-100000,100000)
+except: fail()
+
+try:
+    Q = int(lines[1+R])
+except: fail()
+
+ensure(Q,0,0)
+
+if len(lines) != 1 + R + 1 + Q: fail()
+
+for l in lines[1+R+1:]:
+    try:
+        sr,sc,fr,fc = map(int,l.split(' '))
+    except: fail()
+
+    ensure(sr,1,fr)
+    ensure(sc,1,fc)
+    ensure(fr,1,R)
+    ensure(fc,1,C)
+
+    if sr==fr and sc==fc: fail()
+
+print(1)
+

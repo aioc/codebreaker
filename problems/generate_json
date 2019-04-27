@@ -17,12 +17,20 @@ def problem_gen(ln, sn, d, ic, n):
     return o
 
 problems = []
-problems.extend(problem_gen("Construction ", "a-construction-", "construction", False, 4))
-problems.extend(problem_gen("Cavalry ", "b-cavalry-", "cavalry", False, 4))
-problems.extend(problem_gen("Cloud Cover ", "c-cloud-", "cloud", False, 3))
-problems.extend(problem_gen("Janitor ", "d-janitor-", "janitor", False, 3))
-problems.extend(problem_gen("Detective ", "e-detective-", "detective", False, 1))
-problems.extend(problem_gen("King Arthur II ", "f-arthur-", "arthur", False, 3))
+problems.extend(problem_gen("Panorama ", "a-panorama-", "panorama", False, 3))
+problems.extend(problem_gen("Scootchhop ", "b-scootchhop-", "schootchhop", False, 0))
+problems.append({
+    "long_name": "Scootchhop ST4",
+    "short_name": "b-scootchhop-st4",
+    "task_code": "scootchhop/1.cpp",
+    "sanity_exe": "scootchhop/sanity-st4",
+    "broken_exe": "scootchhop/1.cpp",
+    "correct_exe": "scootchhop/correct.cpp",
+    "checker_exe": "match_file"
+})
+problems.extend(problem_gen("Coloured Walkway ", "c-colour-", "colour", False, 1))
+problems.extend(problem_gen("SPOON ", "d-spoon-", "spoon", False, 2))
+problems.extend(problem_gen("Statuettes ", "e-statuettes-", "statuettes", False, 1))
 
 
 with open('problems.json', 'w') as f:
