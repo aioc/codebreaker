@@ -56,7 +56,7 @@ problems = []
 problem_dict = {}
 
 def load_problem_info():
-    global problems
+    problems = []
     with open(os.path.join(os.getcwd(), PROBLEM_DIR, 'problems.json'), 'r') as f:
         problems = json.load(f)
     for d in problems:
@@ -65,7 +65,6 @@ def load_problem_info():
         problem_dict[p.short_name] = p
 
 async def compile_problem_executables():
-    global problems
     box = execute.Box()
     for d in problems:
         for sf in [d['sanity_exe'], d['broken_exe'], d['correct_exe'], d['checker_exe']]:
