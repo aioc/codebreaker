@@ -36,8 +36,17 @@
         "checker_exe": "match_file"
     },
     {
+        "long_name": "Disappointment 1",
+        "short_name": "c-disappointment-1",
+        "task_code": "disappointment/1.cpp",
+        "sanity_exe": "disappointment/sanity",
+        "broken_exe": "disappointment/1.cpp",
+        "correct_exe": "disappointment/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
         "long_name": "Coloured Walkway 1",
-        "short_name": "c-colour-1",
+        "short_name": "d-colour-1",
         "task_code": "coloured_walkway/1.cpp",
         "sanity_exe": "coloured_walkway/sanity",
         "broken_exe": "coloured_walkway/1.cpp",
@@ -46,7 +55,7 @@
     },
     {
         "long_name": "SPOON 1",
-        "short_name": "d-spoon-1",
+        "short_name": "e-spoon-1",
         "task_code": "spoon/1.cpp",
         "sanity_exe": "spoon/sanity",
         "broken_exe": "spoon/1.cpp",
@@ -55,7 +64,7 @@
     },
     {
         "long_name": "SPOON 2",
-        "short_name": "d-spoon-2",
+        "short_name": "e-spoon-2",
         "task_code": "spoon/2.cpp",
         "sanity_exe": "spoon/sanity",
         "broken_exe": "spoon/2.cpp",
@@ -64,7 +73,7 @@
     },
     {
         "long_name": "Statuettes 1",
-        "short_name": "e-statuettes-1",
+        "short_name": "f-statuettes-1",
         "task_code": "statuettes/1.cpp",
         "sanity_exe": "statuettes/sanity",
         "broken_exe": "statuettes/1.cpp",
