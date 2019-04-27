@@ -29,7 +29,7 @@ problems.append({
     "checker_exe": "match_file"
 })
 problems.extend(problem_gen("Disappointment ", "c-disappointment-", "disappointment", False, 1))
-problems.extend(problem_gen("Coloured Walkway ", "d-colour-", "coloured_walkway", False, 1))
+problems.extend(problem_gen("Coloured Walkway ", "d-colour-", "coloured_walkway", False, 3))
 problems.extend(problem_gen("SPOON ", "e-spoon-", "spoon", False, 2))
 problems.extend(problem_gen("Statuettes ", "f-statuettes-", "statuettes", False, 1))
 
