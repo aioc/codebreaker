@@ -54,6 +54,24 @@
         "checker_exe": "match_file"
     },
     {
+        "long_name": "Coloured Walkway 2",
+        "short_name": "d-colour-2",
+        "task_code": "coloured_walkway/2.cpp",
+        "sanity_exe": "coloured_walkway/sanity",
+        "broken_exe": "coloured_walkway/2.cpp",
+        "correct_exe": "coloured_walkway/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Coloured Walkway 3",
+        "short_name": "d-colour-3",
+        "task_code": "coloured_walkway/3.cpp",
+        "sanity_exe": "coloured_walkway/sanity",
+        "broken_exe": "coloured_walkway/3.cpp",
+        "correct_exe": "coloured_walkway/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
         "long_name": "SPOON 1",
         "short_name": "e-spoon-1",
         "task_code": "spoon/1.cpp",
