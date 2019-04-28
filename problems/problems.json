@@ -27,11 +27,20 @@
         "checker_exe": "match_file"
     },
     {
+        "long_name": "Scootchhop 1",
+        "short_name": "b-scootchhop-1",
+        "task_code": "scootchhop/1.cpp",
+        "sanity_exe": "scootchhop/sanity",
+        "broken_exe": "scootchhop/1.cpp",
+        "correct_exe": "scootchhop/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
         "long_name": "Scootchhop ST4",
         "short_name": "b-scootchhop-st4",
-        "task_code": "scootchhop/1.cpp",
+        "task_code": "scootchhop/st4.cpp",
         "sanity_exe": "scootchhop/sanity-st4",
-        "broken_exe": "scootchhop/1.cpp",
+        "broken_exe": "scootchhop/st4.cpp",
         "correct_exe": "scootchhop/correct.cpp",
         "checker_exe": "match_file"
     },

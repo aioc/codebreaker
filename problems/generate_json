@@ -18,7 +18,7 @@ def problem_gen(ln, sn, d, ic, n):
 
 problems = []
 problems.extend(problem_gen("Panorama ", "a-panorama-", "panorama", False, 3))
-problems.extend(problem_gen("Scootchhop ", "b-scootchhop-", "schootchhop", False, 1))
+problems.extend(problem_gen("Scootchhop ", "b-scootchhop-", "scootchhop", False, 1))
 problems.append({
     "long_name": "Scootchhop ST4",
     "short_name": "b-scootchhop-st4",
