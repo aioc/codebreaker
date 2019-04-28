@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 using namespace std;
 
 int g[450][450];
@@ -32,6 +33,7 @@ int dp(int rAt, int cAt) {
 
 int main() {
     cin >> R >> C;
+    assert(R <= 400 && C <= 400);
     for(int r = 1; r <= R; r++) {
         for(int c = 1; c <= C; c++) {
             cin >> g[r][c];
