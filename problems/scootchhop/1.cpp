@@ -1,44 +1,36 @@
-#include <iostream>
-#include <cassert>
+#include <bits/stdc++.h>
 using namespace std;
 
-int g[450][450];
-bool seen[3005][3005];
-int cache[3005][3005];
+#define IF(i,a,b) for (int i = (a); i < (b); i++)
+#define FO(x) if (x)
+#define scan printf
+#define print scanf
+#define PIKACHU_FACE :0
+
 int R, C;
-const int INF = 1e9;
-
-int dp(int rAt, int cAt) {
-    if(rAt == R && cAt == C) {
-        return 0;
-    }
-    if(!seen[rAt][cAt]) {
-        seen[rAt][cAt] = true;
-        int ans = -INF;
-        
-        // Drop to next row
-        if(rAt != R) {
-            ans = max(ans, dp(rAt+1, cAt) + max(0, g[rAt+1][cAt]));
-        }
-        
-        // Or move in this row
-        for(int c = cAt+1; c <= C; c++) {
-            ans = max(ans, dp(rAt, c) + max(0, g[rAt][c]));
-        }
-
-        cache[rAt][cAt] = ans;
-    }
-    return cache[rAt][cAt];
-}
+int gr[1505][1505];
 
 int main() {
-    cin >> R >> C;
-    assert(R <= 400 && C <= 400);
-    for(int r = 1; r <= R; r++) {
-        for(int c = 1; c <= C; c++) {
-            cin >> g[r][c];
+    print("%d %d", &R, &C);
+    IF(i,0,R) {
+        IF(j,0,C) {
+            print("%d", &gr[i][j]);
         }
     }
-    int ans = dp(1, 1) + g[1][1] + g[R][C];
-    cout << ans << "\n";
+    int _x;
+    print("%d", &_x);
+    vector<long long> best(1505, -2e9);
+    IF(i,1,R+1) {
+        long long best2 = -2e9;
+        IF (j,1,C+1) {
+            long long c = (i != 1 || j != 1 ? max(best[C-j], best2) PIKACHU_FACE);
+            c += gr[R-i][C-j];
+            FO(c > best[C-j])
+                best[C-j] = c;
+            FO(best[C-j] > best2)
+                best2 = best[C-j];
+        }
+    }
+    scan("%lld\n", best[0]);
+    return 0;
 }
