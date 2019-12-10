@@ -40,31 +40,8 @@ sudo service postgresql start
 ```
 
 Next, do some admin to add the user codebreaker18 will run as to the database, with the appropriate permissions.
-
-Run `sudo -u postgres psql` to enter psql with admin privileges. From within psql, run the following commands (replacing `$USER` as appropriate:
-```
-# Honestly, it's a bit weird that all this config isn't part of `table_setup.sql`.
-# idk create an issue about it or something lol.
-CREATE DATABASE codebreaker;
-# Alternatively, you can run codebreaker18 as `postgres` and skip
-# the rest of this config (you madman).
-CREATE USER ${USER};
-GRANT CONNECT ON DATABASE codebreaker TO ${USER};
-GRANT USAGE ON SCHEMA public TO ${USER};
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ${USER};
-GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO ${USER};
-```
-
-Next, go into `src/database.py`/`setup.sh`/`start.sh` and muck about with the configuration so that codebreaker18 can
-actually connect to your database. What's there probably will not work OOTB. Particularly, make sure that the main and
-worker programs are run as the database user you created, and that they are connecting with the correct username (and
-password, if you set one).
-
-Once you're done, go ahead and set up the tables, and poke around in psql to see if it looks about right:
-
-```
-./setup.sh
-```
+Use `who` to find the user you are logged in as and change the  `run_user` in the `table_setup.sql` script.
+Then, simply run the `./setup.sh` script. This script will create and configure the database for you.
 
 ### nginx (optional)
 
