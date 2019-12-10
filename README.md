@@ -1,41 +1,70 @@
 # codebreaker18
-by jimjam, and original design and server by dxsmiley
+_by jimjam, and original design and server by dxsmiley_
 
 This is a new implementation of codebreaker to replace the current setup, a modified version of CMS. It is much more lightweight, generally faster to setup, administer and judge, and easier to use for students and tutors.
 
-## Setup (tested on E2 Free-tier server)
+## Setup
 
 codebreaker18 is designed to run on a basic AWS E2 instance, but can also be run on a local computer, and connected to via LAN.
 
-On E2, run
+The following instructions will assume you are running on the AWS free tier Ubuntu 18.04 offering, but should not be hard to adapt to whatever you are trying to run this on (with a little Google-Fu).
+
+### Install required dependencies
+
 ```
-sudo yum -y install $(cat yum-requirements.txt)
+# FIXME: yum-requirements.txt doesn't have all the dependencies needed.
+# You'll have to install missing dependencies as you encounter them.
+sudo apt-get update && sudo apt-get install $(cat yum-requirements.txt)
 ```
-to install all dependencies.
 
-### Python 3.6 setup (tested on Ubuntu on Windows)
-This server is written in Python 3.6. You may need do some poking around to get Python 3.6 to work on your machine.
+### Python3 dependencies
 
-Install the python dependencies (inside a virtualenv, ideally) using `sudo pip3 install -r requirements.txt`.
+This server was developed using Python 3.6, so install that for the least hassle. It will probably work with Python 3.anything though.
 
-### postgresql
+Install the python dependencies (inside a virtualenv, ideally):
 
-codebreaker18 expects a Postgres database named `codebreaker` and a local postgres server, connecting using username `codebreaker` and no password (this generally makes it a good idea to ban all external connections).
+```
+virtualenv cb -p `which python3`
+source cb env/bin/activate
+pip3 install -r requirements.txt
+```
 
-To create this, start by running postgresql with
+### Postgres Database
+
+codebreaker18 expects a Postgres database named `codebreaker`. Table schemas are defined in `table_setup.sql`.
+
+The easiest way is to set up a local postgres server:
+
 ```
 sudo service postgresql start
 ```
 
-Run `sudo -u postgres psql` to enter psql
+Next, do some admin to add the user codebreaker18 will run as to the database, with the appropriate permissions.
 
-Within psql:
+Run `sudo -u postgres psql` to enter psql with admin privileges. From within psql, run the following commands (replacing `$USER` as appropriate:
 ```
+# Honestly, it's a bit weird that all this config isn't part of `table_setup.sql`.
+# idk create an issue about it or something lol.
 CREATE DATABASE codebreaker;
-CREATE USER codebreaker;
+# Alternatively, you can run codebreaker18 as `postgres` and skip
+# the rest of this config (you madman).
+CREATE USER ${USER};
+GRANT CONNECT ON DATABASE codebreaker TO ${USER};
+GRANT USAGE ON SCHEMA public TO ${USER};
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ${USER};
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO ${USER};
 ```
-Depending on how you set up your postgresql instance, you may need to go mucking about in the configuration. Of note,
-you probably want to look at `setup.sh` and `src/database.py`.
+
+Next, go into `src/database.py`/`setup.sh`/`start.sh` and muck about with the configuration so that codebreaker18 can
+actually connect to your database. What's there probably will not work OOTB. Particularly, make sure that the main and
+worker programs are run as the database user you created, and that they are connecting with the correct username (and
+password, if you set one).
+
+Once you're done, go ahead and set up the tables, and poke around in psql to see if it looks about right:
+
+```
+./setup.sh
+```
 
 ### nginx (optional)
 
@@ -66,4 +95,7 @@ sudo service nginx start
 ```
 
 ## Starting the server
-Simply run the start script: `./start.sh`.
+Finally, run the start script: `./start.sh`.
+
+This also opens a bunch of screens in `tmux` which I personally find annoying.
+Feel free to putter about with the script as you please.
