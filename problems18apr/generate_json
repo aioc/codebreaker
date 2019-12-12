@@ -6,12 +6,19 @@ def problem_gen(ln, sn, d, ic, n):
     o = []
     for i in range(1,n+1):
         o.append({
+            # The full name displayed on the web page.
             "long_name":ln + str(i),
+            # The short name used in the URL.
             "short_name":sn + str(i),
+            # The location of the code to be broken.
             "task_code":"%s/%d.cpp" % (d, i),
+            # The location of the task's sanity checker.
             "sanity_exe":"%s/sanity" % (d),
+            # The location of the code to break.
             "broken_exe":"%s/%d.cpp" % (d, i),
+            # The location of the model solution to compare against.
             "correct_exe":"%s/correct.cpp" % (d),
+            # The location of the output checker.
             "checker_exe":"%s/checker" % (d) if ic else "match_file"
         })
     return o
