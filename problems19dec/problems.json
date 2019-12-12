@@ -1,0 +1,11 @@
+[
+    {
+        "long_name": "Vases 1",
+        "short_name": "a-vases-1",
+        "task_code": "vases/1.cpp",
+        "sanity_exe": "vases/sanity",
+        "broken_exe": "vases/1.cpp",
+        "correct_exe": "vases/correct.cpp",
+        "checker_exe": "vases/checker"
+    }
+]
