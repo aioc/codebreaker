@@ -30,7 +30,6 @@ pip3 install -r requirements.txt
 ### Postgres Database
 
 codebreaker18 expects a Postgres database named `codebreaker`.
-
 The easiest way is to set up a local postgres server:
 
 ```
@@ -80,3 +79,38 @@ Finally, run the start script: `./start.sh`.
 
 This also opens a bunch of screens in `tmux` which I personally find annoying.
 Feel free to putter about with the script as you please.
+
+
+## Problems
+
+You can check past contests to see the format expected by codebreaker18.
+`src/problems.py` is where you configure which (relative) directory codebreaker18 should look for to find problems.
+
+
+## Contest admin
+
+### Adding users
+
+The script `reset.sql` that confusingly does two things:
+
+* Resets the database, deleting all user and submission data.
+* Adds users to the database.
+
+You can additional `INSERT` commands to add extra contestants to the table.
+Make sure to set visible = TRUE and admin = FALSE, so that the contestants are visible on the scoreboard and do not have admin rights.
+
+Warning: Do not commit student passwords to the git repo.
+
+### Starting/ending the contest
+
+Initially, codebreaker is configured to allow contestants to log in and see what the problems are, but not the code they are trying to break. To start the contest, you will need to update the settings table in the database, then restart `src/server.py`.
+
+The setting has 4 modes:
+```
+0 = No access. Contestants can't see code and cannot submit.
+1 = Contest mode. Contestants can now see and submit problems
+2 = No more submissions. Contestants can no longer submit (but can still see problems).
+3 = Contestants can now submit post-contest. The scoreboard is frozen.
+```
+
+You can update the database directly to change the settings, or you can use the provided script in `scripts/`.
