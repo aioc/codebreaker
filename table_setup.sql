@@ -1,6 +1,6 @@
 
 -- The user to to give database access to
-\set run_user 'ubuntunununu'
+\set run_user 'ubuntu'
 
 -- Create codebreaker database, if it doesn't already exist.
 SELECT 'CREATE DATABASE codebreaker'

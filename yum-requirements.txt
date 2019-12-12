@@ -1,3 +1,4 @@
-postgresql-server
+postgresql
 nginx
-python36
+python3
+virtualenv

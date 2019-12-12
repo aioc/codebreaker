@@ -12,8 +12,6 @@ The following instructions will assume you are running on the AWS free tier Ubun
 ### Install required dependencies
 
 ```
-# FIXME: yum-requirements.txt doesn't have all the dependencies needed.
-# You'll have to install missing dependencies as you encounter them.
 sudo apt-get update && sudo apt-get install $(cat yum-requirements.txt)
 ```
 
@@ -25,13 +23,13 @@ Install the python dependencies (inside a virtualenv, ideally):
 
 ```
 virtualenv cb -p `which python3`
-source cb env/bin/activate
+source cb/bin/activate
 pip3 install -r requirements.txt
 ```
 
 ### Postgres Database
 
-codebreaker18 expects a Postgres database named `codebreaker`. Table schemas are defined in `table_setup.sql`.
+codebreaker18 expects a Postgres database named `codebreaker`.
 
 The easiest way is to set up a local postgres server:
 
@@ -39,9 +37,15 @@ The easiest way is to set up a local postgres server:
 sudo service postgresql start
 ```
 
-Next, do some admin to add the user codebreaker18 will run as to the database, with the appropriate permissions.
-Use `who` to find the user you are logged in as and change the  `run_user` in the `table_setup.sql` script.
-Then, simply run the `./setup.sh` script. This script will create and configure the database for you.
+Next, we will set up the database with the table schemas defined in `table_setup.sql`.
+This script can also give permissions for the user that codebreaker18 will run as.
+Use `who` to find the user you are logged in as and change the variable `run_user` in
+the `table_setup.sql` script to it (or whoever you intend to run codebraker18 as).
+Then, simply run the `./setup.sh` script.
+
+```
+sudo -u postgres ./setup.sh
+```
 
 ### nginx (optional)
 
