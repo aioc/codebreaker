@@ -2,3 +2,4 @@ postgresql
 nginx
 python3
 virtualenv
+g++
