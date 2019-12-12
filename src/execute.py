@@ -5,6 +5,7 @@ import stat
 import shlex
 import randstring
 import shutil
+import sys
 
 class TimeoutExpired(Exception):
     pass
@@ -20,10 +21,19 @@ def mkdir(p):
 
 class Box:
 
+    # Creates a temporary directory to perform compilation in, so that
+    # compilation artifacts can easily be cleaned up.
+    #
+    # This is not secure for compiling untrusted code!
     def __init__(self):
         self.path = './temp/{}/'.format(randstring.generate(32))
         mkdir(self.path)
 
+    # Returns the absolute path to the given file
+    # (but does not guarantee that it exists).
+    #
+    # If content is not None, also creates the file and fills it with
+    # content. If the file already exists, it is overwritten.
     def prepfile(self, name, content = None):
         location = self.path + name
         if type(content) == str:
@@ -37,6 +47,8 @@ class Box:
 
     async def run_command_async(self, command, timeout = 3, input = ''):
         INTERVAL = 0.25
+        sys.stdout.write("Attempting %s\n" % command) 
+        sys.stdout.write("cwd %s\n" % os.getcwd()) 
         process = subprocess.Popen(shlex.split(command), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         try:
             process.stdin.write(input.encode('utf-8'))
