@@ -11,4 +11,7 @@ int main() {
     } else {
         printf("%d %d %d\n", 1, 2, N-3);
     }
+
+    // return 0;
+    // Turns out, main() automatically returns 0 here!
 }

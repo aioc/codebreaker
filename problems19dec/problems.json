@@ -7,5 +7,23 @@
         "broken_exe": "vases/1.cpp",
         "correct_exe": "vases/correct.cpp",
         "checker_exe": "vases/checker"
+    },
+    {
+        "long_name": "Vases 2",
+        "short_name": "a-vases-2",
+        "task_code": "vases/2.cpp",
+        "sanity_exe": "vases/sanity",
+        "broken_exe": "vases/2.cpp",
+        "correct_exe": "vases/correct.cpp",
+        "checker_exe": "vases/checker"
+    },
+    {
+        "long_name": "Vases 3",
+        "short_name": "a-vases-3",
+        "task_code": "vases/3.cpp",
+        "sanity_exe": "vases/sanity",
+        "broken_exe": "vases/3.cpp",
+        "correct_exe": "vases/correct.cpp",
+        "checker_exe": "vases/checker"
     }
 ]
