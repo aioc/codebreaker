@@ -17,7 +17,7 @@ int main() {
     b = N/3;
 
     // Kevin said this would help
-    // If N is even, jiggle a
+    // If N is odd, jiggle a
     if(N%2 == 1) { 
         a++;
     }
