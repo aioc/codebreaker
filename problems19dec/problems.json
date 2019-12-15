@@ -25,5 +25,14 @@
         "broken_exe": "vases/3.cpp",
         "correct_exe": "vases/correct.cpp",
         "checker_exe": "vases/checker"
+    },
+    {
+        "long_name": "RPS 1",
+        "short_name": "b-rps-1",
+        "task_code": "rps/1.cpp",
+        "sanity_exe": "rps/sanity",
+        "broken_exe": "rps/1.cpp",
+        "correct_exe": "rps/correct.cpp",
+        "checker_exe": "match_file"
     }
 ]
