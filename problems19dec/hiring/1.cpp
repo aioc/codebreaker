@@ -78,7 +78,9 @@ int main() {
         student[i] *= -1;
     }
     // I can hear the faint voice of Matt telling me I'll regret
-    // not using std::transform. Good thing my code is bug free.
+    // not using std::transform.
+    //
+    // Good thing my code is definitely bug free.
 
     pairOff(skills, student);
     printf("%d\n", ans);
