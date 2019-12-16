@@ -52,5 +52,14 @@
         "broken_exe": "rps/3.cpp",
         "correct_exe": "rps/correct.cpp",
         "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Hiring Monks 1",
+        "short_name": "c-hiring-1",
+        "task_code": "hiring/1.cpp",
+        "sanity_exe": "hiring/sanity",
+        "broken_exe": "hiring/1.cpp",
+        "correct_exe": "hiring/correct.cpp",
+        "checker_exe": "match_file"
     }
 ]

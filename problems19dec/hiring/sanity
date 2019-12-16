@@ -1,0 +1,37 @@
+#! /usr/bin/env python3
+# Sanity for AIO 2019 Hiring
+import sys
+
+def fail():
+    print(0)
+    sys.exit(0)
+
+def ensure(x, mn, mx):
+    if x < mn or x > mx: fail()
+
+lines = list(filter(lambda l: l != "", [l.strip() for l in sys.stdin.readlines()]))
+
+try:
+    vals = list(map(int, lines))
+except: fail()
+
+def ensure_list(stuff):
+    for x in stuff:
+        ensure(x, 1, 1000000000)
+
+def read_vec(vals, min_n, max_n):
+    N = vals[0]
+    vals = vals[1:]
+    if len(vals) < N: fail()
+    ensure_list(vals[:N])
+    vals = vals[N:]
+    ensure(N, min_n, max_n)
+    return vals
+
+try:
+    vals = read_vec(vals, 1, 100000)
+    vals = read_vec(vals, 0, 100000)
+    vals = read_vec(vals, 0, 100000)
+except: fail()
+
+print(1)
