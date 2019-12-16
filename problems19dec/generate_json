@@ -27,7 +27,7 @@ def problem_gen(ln, sn, d, ic, n):
 problems = []
 
 problems.extend(problem_gen("Vases ", "a-vases-", "vases", True, 3))
-problems.extend(problem_gen("RPS ", "b-rps-", "rps", False, 1))
+problems.extend(problem_gen("RPS ", "b-rps-", "rps", False, 3))
 
 with open('problems.json', 'w') as f:
     f.write(json.dumps(problems, indent=4))

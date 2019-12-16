@@ -34,5 +34,23 @@
         "broken_exe": "rps/1.cpp",
         "correct_exe": "rps/correct.cpp",
         "checker_exe": "match_file"
+    },
+    {
+        "long_name": "RPS 2",
+        "short_name": "b-rps-2",
+        "task_code": "rps/2.cpp",
+        "sanity_exe": "rps/sanity",
+        "broken_exe": "rps/2.cpp",
+        "correct_exe": "rps/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "RPS 3",
+        "short_name": "b-rps-3",
+        "task_code": "rps/3.cpp",
+        "sanity_exe": "rps/sanity",
+        "broken_exe": "rps/3.cpp",
+        "correct_exe": "rps/correct.cpp",
+        "checker_exe": "match_file"
     }
 ]
