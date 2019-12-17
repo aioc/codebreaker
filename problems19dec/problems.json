@@ -79,5 +79,32 @@
         "broken_exe": "hiring/3.cpp",
         "correct_exe": "hiring/correct.cpp",
         "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Medusa's Snakes 1",
+        "short_name": "d-snake-1",
+        "task_code": "snake/1.cpp",
+        "sanity_exe": "snake/sanity",
+        "broken_exe": "snake/1.cpp",
+        "correct_exe": "snake/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Medusa's Snakes 2",
+        "short_name": "d-snake-2",
+        "task_code": "snake/2.cpp",
+        "sanity_exe": "snake/sanity",
+        "broken_exe": "snake/2.cpp",
+        "correct_exe": "snake/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Medusa's Snakes 3",
+        "short_name": "d-snake-3",
+        "task_code": "snake/3.cpp",
+        "sanity_exe": "snake/sanity",
+        "broken_exe": "snake/3.cpp",
+        "correct_exe": "snake/correct.cpp",
+        "checker_exe": "match_file"
     }
 ]
