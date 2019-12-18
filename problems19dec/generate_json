@@ -30,6 +30,7 @@ problems.extend(problem_gen("Vases ", "a-vases-", "vases", True, 3))
 problems.extend(problem_gen("RPS ", "b-rps-", "rps", False, 3))
 problems.extend(problem_gen("Hiring Monks ", "c-hiring-", "hiring", False, 3))
 problems.extend(problem_gen("Medusa's Snakes ", "d-snake-", "snake", False, 3))
+problems.extend(problem_gen("Evading Capture", "e-evading-", "evading", False, 2))
 
 with open('problems.json', 'w') as f:
     f.write(json.dumps(problems, indent=4))

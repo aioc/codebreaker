@@ -106,5 +106,23 @@
         "broken_exe": "snake/3.cpp",
         "correct_exe": "snake/correct.cpp",
         "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Evading Capture1",
+        "short_name": "e-evading-1",
+        "task_code": "evading/1.cpp",
+        "sanity_exe": "evading/sanity",
+        "broken_exe": "evading/1.cpp",
+        "correct_exe": "evading/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Evading Capture2",
+        "short_name": "e-evading-2",
+        "task_code": "evading/2.cpp",
+        "sanity_exe": "evading/sanity",
+        "broken_exe": "evading/2.cpp",
+        "correct_exe": "evading/correct.cpp",
+        "checker_exe": "match_file"
     }
 ]
