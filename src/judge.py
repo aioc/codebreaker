@@ -16,7 +16,7 @@ async def run_judge(problem, user_input, user_output):
             return (0, "Input is insane.")
     except:
         box.cleanup()
-        return (0, "[sanity checker failed]")
+        return (0, "[internal error: sanity checker failed]")
 
     broken_exe = box.prepfile('broken.exe', problem.broken_exe)
     correct_exe = box.prepfile('correct.exe', problem.correct_exe)
@@ -25,10 +25,10 @@ async def run_judge(problem, user_input, user_output):
         broken_output = await box.run_command_async(broken_exe, timeout=1, input = user_input)
         broken_output = broken_output.strip()
     except execute.TimeoutExpired:
-        return (5, "Code broken! (TLE)")
+        return (10, "Code broken! (TLE)")
         box.cleanup()
     except execute.NonZeroReturnCode:
-        return (5, "Code broken! (RE)")
+        return (10, "Code broken! (RE)")
         box.cleanup()
 
     try:
@@ -36,7 +36,7 @@ async def run_judge(problem, user_input, user_output):
         correct_output = correct_output.strip()
     except:
         box.cleanup()
-        return (0, "[judges' solution failed]")
+        return (0, "[internal error: judges' solution failed]")
 
     user_input_file = box.prepfile('user.in', user_input)
     user_output_file = box.prepfile('user.out', user_output)
@@ -52,7 +52,7 @@ async def run_judge(problem, user_input, user_output):
             return (-1, "Wrong answer for proposed input.")
     except:
         box.cleanup()
-        return (0, "[checker broke when marking user output]")
+        return (0, "[internal error: checker broke when marking user output]")
 
     try:
         result = await box.run_command_async("%s %s %s %s" % (checker_exe, broken_output_file, correct_output_file, user_input_file))
@@ -61,6 +61,6 @@ async def run_judge(problem, user_input, user_output):
             return (-1, "Input does not break code.")
     except:
         box.cleanup()
-        return (0, "[checker broke when marking broken output]")
+        return (0, "[internal error: checker broke when marking broken output]")
 
-    return (5, "Code broken! (WA)")
+    return (10, "Code broken! (WA)")
