@@ -7,8 +7,6 @@ int n, e, x, k;
 int ans;
 
 int main() {
-    freopen("evadingin.txt", "r", stdin);
-    freopen("evadingout.txt", "w", stdout);
     scanf("%d%d%d%d", &n, &e, &x, &k);
     for (int i = 1; i <= e; i++) {
         int a, b; scanf("%d%d", &a, &b);
