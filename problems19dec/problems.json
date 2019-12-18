@@ -27,6 +27,15 @@
         "checker_exe": "vases/checker"
     },
     {
+        "long_name": "Vases 4",
+        "short_name": "a-vases-4",
+        "task_code": "vases/4.cpp",
+        "sanity_exe": "vases/sanity",
+        "broken_exe": "vases/4.cpp",
+        "correct_exe": "vases/correct.cpp",
+        "checker_exe": "vases/checker"
+    },
+    {
         "long_name": "RPS 1",
         "short_name": "b-rps-1",
         "task_code": "rps/1.cpp",
@@ -108,7 +117,7 @@
         "checker_exe": "match_file"
     },
     {
-        "long_name": "Evading Capture1",
+        "long_name": "Evading Capture 1",
         "short_name": "e-evading-1",
         "task_code": "evading/1.cpp",
         "sanity_exe": "evading/sanity",
@@ -117,7 +126,7 @@
         "checker_exe": "match_file"
     },
     {
-        "long_name": "Evading Capture2",
+        "long_name": "Evading Capture 2",
         "short_name": "e-evading-2",
         "task_code": "evading/2.cpp",
         "sanity_exe": "evading/sanity",
