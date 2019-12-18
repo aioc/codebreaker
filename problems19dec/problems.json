@@ -133,5 +133,14 @@
         "broken_exe": "evading/2.cpp",
         "correct_exe": "evading/correct.cpp",
         "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Evading Capture 3",
+        "short_name": "e-evading-3",
+        "task_code": "evading/3.cpp",
+        "sanity_exe": "evading/sanity",
+        "broken_exe": "evading/3.cpp",
+        "correct_exe": "evading/correct.cpp",
+        "checker_exe": "match_file"
     }
 ]

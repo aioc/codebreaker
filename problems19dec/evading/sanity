@@ -28,9 +28,11 @@ try:
     edges = list(map(g, edges))
 except: fail()
 
-if any(map(lambda x: x[0] == x[1], edges)): fail()
+# self-loops
+# if any(map(lambda x: x[0] == x[1], edges)): fail()
 
-if len(set(edges)) != len(edges): fail()
+# multi edges
+# if len(set(edges)) != len(edges): fail()
 
 if len(edges) != E: fail()
     
