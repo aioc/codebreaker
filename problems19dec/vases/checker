@@ -5,6 +5,10 @@ def fail():
     print(0)
     sys.exit(0)
 
+def succ():
+    print(100)
+    sys.exit(1)
+
 def ensure(x, mn, mx):
     if x < mn or x > mx: fail()
 
@@ -16,14 +20,13 @@ def kind_readlines(name):
 try:
     student = list(map(int, kind_readlines(sys.argv[1])[0].split(' ')))
     N = int(kind_readlines(sys.argv[3])[0].strip())
-    sys.stderr.write("N = %d, student = %s\n" % (N, student))
 except: fail()
 
 ensure(N, 1, 100000)
 
 if N <= 5:
     if student[0] == -1 and student[1] == -1 and student[2] == -1:
-        print(100)
+        succ()
     else: fail()
 
 # Must be between 1 and N
@@ -37,4 +40,4 @@ if len(student) > len(set(student)):
 # Must sum to N
 ensure(sum(student), N, N)
 
-print(100)
+succ()
