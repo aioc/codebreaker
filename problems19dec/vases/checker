@@ -7,7 +7,7 @@ def fail():
 
 def succ():
     print(100)
-    sys.exit(1)
+    sys.exit(0)
 
 def ensure(x, mn, mx):
     if x < mn or x > mx: fail()
