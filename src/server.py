@@ -121,7 +121,9 @@ async def page_problem_description(request):
 
     global contestant_access
 
-    mark_it = contestant_access == 3 or (contestant_access == 2 and await results.get_user_problem_total(request._username, problem.short_name) > -5)
+    # FIXME: -1000 to disable the submit check for when your score would be negative.
+    # FIXME: There is no indication the the user when they failed this check
+    mark_it = contestant_access == 3 or (contestant_access == 2 and await results.get_user_problem_total(request._username, problem.short_name) > -1000)
 
     return {
         'problem': problem,
@@ -157,7 +159,9 @@ async def page_submit(request):
         global contestant_access
 
         problem = problems.get_problem(name)
-        mark_it = contestant_access == 3 or (contestant_access == 2 and await results.get_user_problem_total(username, problem.short_name) > -5)
+        # FIXME: -1000 to disable the submit check for when your score would be negative.
+        # FIXME: There is no indication the the user when they failed this check
+        mark_it = contestant_access == 3 or (contestant_access == 2 and await results.get_user_problem_total(username, problem.short_name) > -1000)
 
         print("SUBMISSION: %s %s [%s]" % (username, problem.short_name, "added to queue" if mark_it else ["warning: impossible submission", "ignored: submissions banned right now","ignored: too many points lost for this problem"][contestant_access]))
 
