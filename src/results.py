@@ -12,6 +12,13 @@ ON owner = users.username
 WHERE complete = TRUE and username = $1 and problem = $2;
 '''
 
+SELECT_USER_PROBLEM_BEST = '''
+SELECT max(score)
+FROM results LEFT JOIN users
+ON owner = users.username
+WHERE complete = TRUE and username = $1 and problem = $2;
+'''
+
 SELECT_VISIBLE_NAMES = '''
 SELECT username
 FROM users
@@ -30,6 +37,11 @@ UPDATE_LIMIT = 2
 
 async def get_user_problem_total(username, problem):
     result = await database.connection.fetchval(SELECT_USER_PROBLEM_TOTAL, username, problem)
+    if result is None: result = 0
+    return result
+
+async def get_user_problem_best(username, problem):
+    result = await database.connection.fetchval(SELECT_USER_PROBLEM_BEST, username, problem)
     if result is None: result = 0
     return result
 

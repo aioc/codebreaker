@@ -5,6 +5,7 @@ import json
 import asyncio
 import sys
 import random
+import results
 os.chdir(os.path.join(os.path.dirname(__file__),".."))
 import database
 import judge
@@ -26,6 +27,10 @@ async def run_worker(number):
             print('Processing job -', job['id'])
             problem = problems.get_problem(job['problem'])
             score, status = await judge.run_judge(problem, job['proposed_input'], job['correct_output'])
+            best_score = await results.get_user_problem_best(job['owner'], job['problem'])
+            if best_score > 0 and score > 0:
+                score = 0
+                status = 'Code already broken!'
             await database.connection.execute(UPDATE_COMPLETED, job['id'], int(score), status)
             print('Finished -', status)
         else:

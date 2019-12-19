@@ -58,7 +58,7 @@ async def run_judge(problem, user_input, user_output):
         result = await box.run_command_async("%s %s %s %s" % (checker_exe, broken_output_file, correct_output_file, user_input_file))
         if result.strip() == "100":
             box.cleanup()
-            return (-1, "Input does not break code.")
+            return (-2, "Input does not break code.")
     except:
         box.cleanup()
         return (0, "[internal error: checker broke when marking broken output]")
