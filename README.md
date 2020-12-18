@@ -9,6 +9,8 @@ codebreaker18 is designed to run on a basic AWS E2 instance, but can also be run
 
 The following instructions will assume you are running on the AWS free tier Ubuntu 18.04 offering, but should not be hard to adapt to whatever you are trying to run this on (with a little Google-Fu).
 
+You can clone this repo anywhwere.
+
 ### Install required dependencies
 
 ```
