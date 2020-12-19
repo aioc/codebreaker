@@ -12,14 +12,11 @@ def ensure(x, mn, mx):
 lines = list(filter(lambda l: l != "", [l.strip() for l in sys.stdin.readlines()]))
 
 try:
-    N = int(lines[0].strip())
-    Ra, Pa, Sa = list(map(int, lines[1].strip().split()))
-    Rb, Pb, Sb = list(map(int, lines[2].strip().split()))
+    A, B, S, C, D = list(map(int, lines[0].strip().split()))
 except: fail()
 
-ensure(N, 1, 5000)
-if Ra + Pa + Sa != Rb + Pb + Sb: fail()
-if Ra + Pa + Sa != N: fail()
+for x in [A, B, S, C, D]:
+    ensure(x, 0, 5e8)
+if C + D == 0: fail()
 
-ensure(N, 1, 100000)
 print(1)

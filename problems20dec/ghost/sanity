@@ -1,0 +1,57 @@
+#! /usr/bin/env python3
+# Sanity for Cookies
+import sys
+
+def fail():
+    print(0)
+    sys.exit(0)
+
+def ensure(x, mn, mx):
+    if x < mn or x > mx: fail()
+
+lines = list(filter(lambda l: l != "", [l.strip() for l in sys.stdin.readlines()]))
+
+try:
+    N, K = list(map(int, lines[0].strip().split()))
+    xs = []
+    ts = []
+    for i in range(N):
+        x, t = list(map(int, lines[i+1].strip().split()))
+        xs.append(x)
+        ts.append(t)
+except: fail()
+
+MIN_N = 1;
+MAX_N = 1e5;
+
+MIN_K = 1;
+MAX_K = 3e4;
+
+MIN_X = 1;
+MAX_X = 3e4;
+
+MIN_T = 1;
+MAX_T = 1e9;
+
+SUB3_MAX_N = 1000;
+
+SUB4_MAX_K = 500;
+SUB4_MAX_X = 500;
+SUB4_MAX_T = 1e5;
+
+ensure(N, MIN_N, MAX_N)
+ensure(K, MIN_K, MAX_K)
+
+for i in range(len(xs)):
+    x = xs[i]
+    t = ts[i]
+    ensure(x, MIN_X, MAX_X)
+    ensure(t, MIN_T, MAX_T)
+    if i > 0:
+        if xs[i-1] > xs[i]:
+            fail()
+        if xs[i-1] == xs[i]:
+            if ts[i-1] > ts[i]:
+                fail()
+
+print(1)

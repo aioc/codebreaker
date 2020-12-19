@@ -38,7 +38,8 @@ def problem_gen(ln, sn, d, ic, n):
 
 problems = []
 
-problems.extend(problem_gen("Baubles ", "a-baubles-", "baubles", False, 1))
+problems.extend(problem_gen("Baubles ", "a-baubles-", "baubles", False, 3))
+problems.extend(problem_gen("Cookies ", "b-cookies-", "cookies", False, 3))
 
 with open('problems.json', 'w') as f:
     f.write(json.dumps(problems, indent=4))

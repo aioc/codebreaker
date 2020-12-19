@@ -1,0 +1,32 @@
+#! /usr/bin/env python3
+# Sanity for Cookies
+import sys
+
+def fail():
+    print(0)
+    sys.exit(0)
+
+def ensure(x, mn, mx):
+    if x < mn or x > mx: fail()
+
+lines = list(filter(lambda l: l != "", [l.strip() for l in sys.stdin.readlines()]))
+
+try:
+    D, C0 = list(map(int, lines[0].strip().split()))
+    P1, C1 = list(map(int, lines[1].strip().split()))
+    P2, C2 = list(map(int, lines[2].strip().split()))
+except: fail()
+
+MIN_D_C0_P = 1
+MAX_D_C0_P = 1e4
+
+for x in [D, C0, P1, P2]:
+    ensure(x, MIN_D_C0_P, MAX_D_C0_P)
+
+MIN_C12 = 0
+MAX_C12 = 1e4
+
+ensure(C1, MIN_C12, MAX_C12)
+ensure(C2, MIN_C12, MAX_C12)
+
+print(1)

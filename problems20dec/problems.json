@@ -7,5 +7,50 @@
         "broken_exe": "baubles/1.cpp",
         "correct_exe": "baubles/correct.cpp",
         "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Baubles 2",
+        "short_name": "a-baubles-2",
+        "task_code": "baubles/2.cpp",
+        "sanity_exe": "baubles/sanity",
+        "broken_exe": "baubles/2.cpp",
+        "correct_exe": "baubles/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Baubles 3",
+        "short_name": "a-baubles-3",
+        "task_code": "baubles/3.cpp",
+        "sanity_exe": "baubles/sanity",
+        "broken_exe": "baubles/3.cpp",
+        "correct_exe": "baubles/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Cookies 1",
+        "short_name": "b-cookies-1",
+        "task_code": "cookies/1.cpp",
+        "sanity_exe": "cookies/sanity",
+        "broken_exe": "cookies/1.cpp",
+        "correct_exe": "cookies/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Cookies 2",
+        "short_name": "b-cookies-2",
+        "task_code": "cookies/2.cpp",
+        "sanity_exe": "cookies/sanity",
+        "broken_exe": "cookies/2.cpp",
+        "correct_exe": "cookies/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Cookies 3",
+        "short_name": "b-cookies-3",
+        "task_code": "cookies/3.cpp",
+        "sanity_exe": "cookies/sanity",
+        "broken_exe": "cookies/3.cpp",
+        "correct_exe": "cookies/correct.cpp",
+        "checker_exe": "match_file"
     }
 ]
