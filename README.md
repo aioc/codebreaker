@@ -45,6 +45,7 @@ the `table_setup.sql` script to it (or whoever you intend to run codebraker18 as
 Then, simply run the `./setup.sh` script.
 
 ```
+# Assume run user is "ubuntu" which is fine for Ubunutu AMIs
 sudo -u postgres ./setup.sh
 ```
 
