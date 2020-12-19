@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+# Helper for generating the metadata.json stuff
+
+import json
+
+def problem_gen(ln, sn, d, ic, n):
+    # ln: The "long name" to be displayed to the user
+    #     (e.g. "Vases " -> "Vases 1", "Vases 2" etc.)a
+    # sn: The "short name" to be used in the URL
+    #     (e.g. "a-vases-" -> "a-vases-1", "a-vases-2" and so on)
+    #     Usually a good idea to prefix "a-", "b-" and so on, as
+    #     they are ordered alphabetically in the sidebar.
+    #  d: The directory that the problem is in.
+    #     (e.g. "vases" -> This script will look in "vases/")
+    # ic: If true, looks for a checker named `checker`, otherwise
+    #     "match_file"
+    #  n: The number of broken codes there are
+    o = []
+    for i in range(1,n+1):
+        o.append({
+            # The full name displayed on the web page.
+            "long_name":ln + str(i),
+            # The short name used in the URL.
+            "short_name":sn + str(i),
+            # The location of the codes to be broken.
+            # These should be named 1.cpp, 2.cpp, ...
+            "task_code":"%s/%d.cpp" % (d, i),
+            # The location of the task's sanity checker.
+            "sanity_exe":"%s/sanity" % (d),
+            # The location of the code to break.
+            "broken_exe":"%s/%d.cpp" % (d, i),
+            # The location of the model solution to compare against.
+            "correct_exe":"%s/correct.cpp" % (d),
+            # The location of the output checker.
+            "checker_exe":"%s/checker" % (d) if ic else "match_file"
+        })
+    return o
+
+problems = []
+
+problems.extend(problem_gen("Baubles ", "a-baubles-", "baubles", False, 1))
+
+with open('problems.json', 'w') as f:
+    f.write(json.dumps(problems, indent=4))

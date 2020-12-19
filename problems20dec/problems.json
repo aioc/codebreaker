@@ -1,0 +1,11 @@
+[
+    {
+        "long_name": "Baubles 1",
+        "short_name": "a-baubles-1",
+        "task_code": "baubles/1.cpp",
+        "sanity_exe": "baubles/sanity",
+        "broken_exe": "baubles/1.cpp",
+        "correct_exe": "baubles/correct.cpp",
+        "checker_exe": "match_file"
+    }
+]

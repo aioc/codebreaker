@@ -1,7 +1,7 @@
 import os, shutil, json
 import execute
 
-PROBLEM_DIR = "problems19dec"
+PROBLEM_DIR = "problems20dec"
 
 class Problem:
 
