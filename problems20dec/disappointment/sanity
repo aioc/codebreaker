@@ -1,0 +1,57 @@
+#! /usr/bin/env python3
+import sys
+
+def fail():
+    print(0)
+    sys.exit(0)
+
+def ensure(x, mn, mx):
+    if x < mn or x > mx: fail()
+
+lines = list(filter(lambda l: l != "", [l.strip() for l in sys.stdin.readlines()]))
+
+try:
+    N,M = map(int,lines[0].split(' '))
+except: fail()
+
+ensure(N, 2, 100000)
+ensure(M, 1, 100000)
+
+if len(lines) != 1 + 1 + M: fail()
+
+try:
+    bs = list(map(int,lines[1].split(' ')))
+    if len(bs) != N: fail()
+    for i in bs: ensure(i,0,1000000000)
+except: fail()
+
+s = set()
+adj = [[] for _ in range(N+1)]
+
+for l in lines[2:]:
+    try:
+        a,b = map(int,l.split(' '))
+    except: fail()
+
+    ensure(a,1,N)
+    ensure(b,1,N)
+    if a == b: fail()
+    if (a,b) in s: fail()
+    s.add((a,b))
+    adj[a].append(b)
+
+stack = [1]
+seen = [i==1 for i in range(N+1)]
+
+while len(stack) > 0:
+    t = stack[-1]
+    stack.pop()
+    for i in adj[t]:
+        if not seen[i]:
+            seen[i] = True
+            stack.append(i)
+
+if not seen[N]: fail()
+
+print(1)
+

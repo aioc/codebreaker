@@ -27,6 +27,15 @@
         "checker_exe": "match_file"
     },
     {
+        "long_name": "Baubles 4",
+        "short_name": "a-baubles-4",
+        "task_code": "baubles/4.cpp",
+        "sanity_exe": "baubles/sanity",
+        "broken_exe": "baubles/4.cpp",
+        "correct_exe": "baubles/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
         "long_name": "Cookies 1",
         "short_name": "b-cookies-1",
         "task_code": "cookies/1.cpp",
@@ -51,6 +60,132 @@
         "sanity_exe": "cookies/sanity",
         "broken_exe": "cookies/3.cpp",
         "correct_exe": "cookies/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Ghost 1",
+        "short_name": "c-ghost-1",
+        "task_code": "ghost/1.cpp",
+        "sanity_exe": "ghost/sanity",
+        "broken_exe": "ghost/1.cpp",
+        "correct_exe": "ghost/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Ghost 2",
+        "short_name": "c-ghost-2",
+        "task_code": "ghost/2.cpp",
+        "sanity_exe": "ghost/sanity",
+        "broken_exe": "ghost/2.cpp",
+        "correct_exe": "ghost/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Ghost 3",
+        "short_name": "c-ghost-3",
+        "task_code": "ghost/3.cpp",
+        "sanity_exe": "ghost/sanity",
+        "broken_exe": "ghost/3.cpp",
+        "correct_exe": "ghost/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Tennis 1",
+        "short_name": "d-tennis-1",
+        "task_code": "tennis/1.cpp",
+        "sanity_exe": "tennis/sanity",
+        "broken_exe": "tennis/1.cpp",
+        "correct_exe": "tennis/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Tennis 2",
+        "short_name": "d-tennis-2",
+        "task_code": "tennis/2.cpp",
+        "sanity_exe": "tennis/sanity",
+        "broken_exe": "tennis/2.cpp",
+        "correct_exe": "tennis/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Tennis 3",
+        "short_name": "d-tennis-3",
+        "task_code": "tennis/3.cpp",
+        "sanity_exe": "tennis/sanity",
+        "broken_exe": "tennis/3.cpp",
+        "correct_exe": "tennis/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Tennis 4",
+        "short_name": "d-tennis-4",
+        "task_code": "tennis/4.cpp",
+        "sanity_exe": "tennis/sanity",
+        "broken_exe": "tennis/4.cpp",
+        "correct_exe": "tennis/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Ladybugs 1",
+        "short_name": "e-ladybugs-1",
+        "task_code": "ladybugs/1.cpp",
+        "sanity_exe": "ladybugs/sanity",
+        "broken_exe": "ladybugs/1.cpp",
+        "correct_exe": "ladybugs/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Ladybugs 2",
+        "short_name": "e-ladybugs-2",
+        "task_code": "ladybugs/2.cpp",
+        "sanity_exe": "ladybugs/sanity",
+        "broken_exe": "ladybugs/2.cpp",
+        "correct_exe": "ladybugs/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Panorama 1",
+        "short_name": "f-panorama-1",
+        "task_code": "panorama/1.cpp",
+        "sanity_exe": "panorama/sanity",
+        "broken_exe": "panorama/1.cpp",
+        "correct_exe": "panorama/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Panorama 2",
+        "short_name": "f-panorama-2",
+        "task_code": "panorama/2.cpp",
+        "sanity_exe": "panorama/sanity",
+        "broken_exe": "panorama/2.cpp",
+        "correct_exe": "panorama/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Panorama 3",
+        "short_name": "f-panorama-3",
+        "task_code": "panorama/3.cpp",
+        "sanity_exe": "panorama/sanity",
+        "broken_exe": "panorama/3.cpp",
+        "correct_exe": "panorama/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Disappointment 1",
+        "short_name": "g-disappointment-1",
+        "task_code": "disappointment/1.cpp",
+        "sanity_exe": "disappointment/sanity",
+        "broken_exe": "disappointment/1.cpp",
+        "correct_exe": "disappointment/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Disappointment 2",
+        "short_name": "g-disappointment-2",
+        "task_code": "disappointment/2.cpp",
+        "sanity_exe": "disappointment/sanity",
+        "broken_exe": "disappointment/2.cpp",
+        "correct_exe": "disappointment/correct.cpp",
         "checker_exe": "match_file"
     }
 ]

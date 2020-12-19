@@ -1,0 +1,2 @@
+// placeholder
+int main() {};
