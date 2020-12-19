@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+# This is the default output validator for problems that do not have a
+# custom one. It performs a basic whitediff between the expected and
+# actual outputs. The problem input is ignored.
+#
+# This checker (and all custom checkers) follow the same argument
+# order has ORAC checkers (which is different from CMS's order!).
+import sys
+import os
+
+studentOut, judgeOut, judgeIn = [open(x) for x in sys.argv[1:4]]
+
+# Be nice to students and strip empty lines.
+studentOut = list(filter(lambda x : x != "", studentOut.readlines()))
+judgeOut = list(filter(lambda x : x != "", judgeOut.readlines()))
+if len(studentOut) != len(judgeOut):
+    print(0)
+    exit(0)
+
+for i in range(len(studentOut)):
+    # Be nice and strip leading/trailing whitespace
+    if studentOut[i].strip() != judgeOut[i].strip():
+        print(0)
+        exit(0)
+
+print(100)

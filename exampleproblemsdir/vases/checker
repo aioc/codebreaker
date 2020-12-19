@@ -1,0 +1,43 @@
+#! /usr/bin/env python3
+import sys
+
+def fail():
+    print(0)
+    sys.exit(0)
+
+def succ():
+    print(100)
+    sys.exit(0)
+
+def ensure(x, mn, mx):
+    if x < mn or x > mx: fail()
+
+def kind_readlines(name):
+    with open(name, "r") as f:
+        lines = list(filter(lambda l: l != "", [l.strip() for l in f.readlines()]))
+        return lines
+
+try:
+    student = list(map(int, kind_readlines(sys.argv[1])[0].split(' ')))
+    N = int(kind_readlines(sys.argv[3])[0].strip())
+except: fail()
+
+ensure(N, 1, 100000)
+
+if N <= 5:
+    if student[0] == -1 and student[1] == -1 and student[2] == -1:
+        succ()
+    else: fail()
+
+# Must be between 1 and N
+for i in range(3):
+    ensure(student[i], 1, N)
+
+# Must be unique
+if len(student) > len(set(student)):
+    fail()
+
+# Must sum to N
+ensure(sum(student), N, N)
+
+succ()

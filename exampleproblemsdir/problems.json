@@ -1,0 +1,92 @@
+[
+    {
+        "long_name": "Vases 1",
+        "short_name": "a-vases-1",
+        "task_code": "vases/1.cpp",
+        "sanity_exe": "vases/sanity",
+        "broken_exe": "vases/1.cpp",
+        "correct_exe": "vases/correct.cpp",
+        "checker_exe": "vases/checker"
+    },
+    {
+        "long_name": "Vases 2",
+        "short_name": "a-vases-2",
+        "task_code": "vases/2.cpp",
+        "sanity_exe": "vases/sanity",
+        "broken_exe": "vases/2.cpp",
+        "correct_exe": "vases/correct.cpp",
+        "checker_exe": "vases/checker"
+    },
+    {
+        "long_name": "Vases 3",
+        "short_name": "a-vases-3",
+        "task_code": "vases/3.cpp",
+        "sanity_exe": "vases/sanity",
+        "broken_exe": "vases/3.cpp",
+        "correct_exe": "vases/correct.cpp",
+        "checker_exe": "vases/checker"
+    },
+    {
+        "long_name": "Vases 4",
+        "short_name": "a-vases-4",
+        "task_code": "vases/4.cpp",
+        "sanity_exe": "vases/sanity",
+        "broken_exe": "vases/4.cpp",
+        "correct_exe": "vases/correct.cpp",
+        "checker_exe": "vases/checker"
+    },
+    {
+        "long_name": "RPS 1",
+        "short_name": "b-rps-1",
+        "task_code": "rps/1.cpp",
+        "sanity_exe": "rps/sanity",
+        "broken_exe": "rps/1.cpp",
+        "correct_exe": "rps/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "RPS 2",
+        "short_name": "b-rps-2",
+        "task_code": "rps/2.cpp",
+        "sanity_exe": "rps/sanity",
+        "broken_exe": "rps/2.cpp",
+        "correct_exe": "rps/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "RPS 3",
+        "short_name": "b-rps-3",
+        "task_code": "rps/3.cpp",
+        "sanity_exe": "rps/sanity",
+        "broken_exe": "rps/3.cpp",
+        "correct_exe": "rps/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Medusa's Snakes 1",
+        "short_name": "d-snake-1",
+        "task_code": "snake/1.cpp",
+        "sanity_exe": "snake/sanity",
+        "broken_exe": "snake/1.cpp",
+        "correct_exe": "snake/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Medusa's Snakes 2",
+        "short_name": "d-snake-2",
+        "task_code": "snake/2.cpp",
+        "sanity_exe": "snake/sanity",
+        "broken_exe": "snake/2.cpp",
+        "correct_exe": "snake/correct.cpp",
+        "checker_exe": "match_file"
+    },
+    {
+        "long_name": "Medusa's Snakes 3",
+        "short_name": "d-snake-3",
+        "task_code": "snake/3.cpp",
+        "sanity_exe": "snake/sanity",
+        "broken_exe": "snake/3.cpp",
+        "correct_exe": "snake/correct.cpp",
+        "checker_exe": "match_file"
+    }
+]
