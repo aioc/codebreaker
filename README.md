@@ -9,6 +9,8 @@ codebreaker18 is designed to run on a basic AWS E2 instance, but can also be run
 
 The following instructions will assume you are running on the AWS free tier Ubuntu 18.04 offering, but should not be hard to adapt to whatever you are trying to run this on (with a little Google-Fu).
 
+You can clone this repo anywhwere.
+
 ### Install required dependencies
 
 ```
@@ -43,6 +45,7 @@ the `table_setup.sql` script to it (or whoever you intend to run codebraker18 as
 Then, simply run the `./setup.sh` script.
 
 ```
+# Assume run user is "ubuntu" which is fine for Ubunutu AMIs
 sudo -u postgres ./setup.sh
 ```
 
