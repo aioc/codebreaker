@@ -104,6 +104,13 @@ Make sure to set visible = TRUE and admin = FALSE, so that the contestants are v
 
 Warning: Do not commit student passwords to the git repo.
 
+Once done, you can run it as:
+
+```
+# 
+psql -U postgres -f reset.sql codebreaker
+```
+
 ### Starting/ending the contest
 
 Initially, codebreaker is configured to allow contestants to log in and see what the problems are, but not the code they are trying to break. To start the contest, you will need to update the settings table in the database, then restart `src/server.py`.
