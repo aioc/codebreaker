@@ -27,6 +27,10 @@ Install the python dependencies (inside a virtualenv, ideally):
 virtualenv cb -p `which python3`
 source cb/bin/activate
 pip3 install -r requirements.txt
+# If you get weird errors you may want to revisit the requirements
+# listed here, which weren't frozen :(
+#
+# Look up the packages on PyPi and try downgrading to get it to work
 ```
 
 ### Postgres Database
@@ -107,8 +111,8 @@ Warning: Do not commit student passwords to the git repo.
 Once done, you can run it as:
 
 ```
-# 
-psql -U postgres -f reset.sql codebreaker
+# Make sure you have DB access (remember what we said before about the "ubuntu" default user?)
+psql -f reset.sql codebreaker
 ```
 
 ### Starting/ending the contest
