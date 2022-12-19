@@ -51,25 +51,12 @@ class Box:
         sys.stdout.write("cwd %s\n" % os.getcwd()) 
         process = subprocess.Popen(shlex.split(command), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         try:
-            process.stdin.write(input.encode('utf-8'))
-            process.stdin.close()
-        except:
+            out, err = process.communicate(input=input.encode('utf-8'), timeout=timeout)
+        except subprocess.TimeoutExpired as e:
+            raise TimeoutExpired()
+        except Exception as e:
             raise NonZeroReturnCode()
-        for i in range(int(timeout / INTERVAL)):
-            await asyncio.sleep(INTERVAL)
-            retcode = process.poll()
-            if retcode is not None:
-                break
-        if retcode is None:
-            process.terminate()
-            # Give the system a change to free the program's resources.
-            raise TimeoutExpired
-            # raise subprocess.TimeoutExpired(command, timeout, process.stdout, process.stderr)
-        if retcode != 0:
-            print(process.stderr.read().decode('utf-8'))
-            raise NonZeroReturnCode()
-        # raise subprocess.CalledProcessError(retcode, command, process.stdout, process.stderr)
-        return process.stdout.read().decode('utf-8')
+        return out.decode('utf-8');
 
     def cleanup(self):
         shutil.rmtree(self.path)
