@@ -52,6 +52,8 @@ class Box:
         process = subprocess.Popen(shlex.split(command), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         try:
             out, err = process.communicate(input=input.encode('utf-8'), timeout=timeout)
+            if process.returncode != 0:
+                raise NonZeroReturnCode()
         except subprocess.TimeoutExpired as e:
             raise TimeoutExpired()
         except Exception as e:
