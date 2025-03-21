@@ -93,6 +93,9 @@ Feel free to putter about with the script as you please.
 You can check past contests to see the format expected by codebreaker18.
 `src/problems.py` is where you configure which (relative) directory codebreaker18 should look for to find problems.
 
+Interactive tasks should have 'graders' and/or 'headers' defined in problems.json.
+Each of these fields are a list of files.
+For interactive tasks, students do not submit a correct output, but otherwise they are judged the same as any other task.
 
 ## Contest admin
 

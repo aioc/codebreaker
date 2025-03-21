@@ -14,9 +14,10 @@ class Problem:
     correct_exe = ''
     checker_exe = ''
 
-    def __init__(self, ln, sn, tc):
+    def __init__(self, ln, sn, tc, is_interactive):
         self.long_name = ln
         self.short_name = sn
+        self.is_interactive = is_interactive
         with open(os.path.join(os.getcwd(), PROBLEM_DIR, tc), "r") as f:
             self.task_code = f.read()
 
@@ -63,7 +64,8 @@ def load_problem_info():
     with open(os.path.join(os.getcwd(), PROBLEM_DIR, 'problems.json'), 'r') as f:
         problems = json.load(f)
     for d in problems:
-        p = Problem(d['long_name'], d['short_name'], d['task_code'])
+        is_interactive = 'graders' in d or 'headers' in d
+        p = Problem(d['long_name'], d['short_name'], d['task_code'], is_interactive)
         assert(p.short_name not in problem_dict)
         problem_dict[p.short_name] = p
 
@@ -76,10 +78,28 @@ async def compile_problem_executables():
             if sf.endswith('.cpp'):
                 ef = sf[:-4] + '.exe'
                 if os.path.isfile(ef) and os.path.getmtime(ef) > os.path.getmtime(sf): continue
-                with open(sf, "rb") as sc:
-                    cfile = box.prepfile('source.cpp', sc.read())
-                    efile = box.prepfile('a.exe')
-                await box.run_command_async('g++ -O2 -std=c++11 -o %s %s' % (efile, cfile), timeout=10)
+
+                code_files = []
+
+                def add_file_to_box(file_path, file_name, is_header = False):
+                    with open(file_path, "rb") as sc:
+                        cfile = box.prepfile(file_name, sc.read())
+                        if not is_header:
+                            code_files.append(cfile)
+
+                add_file_to_box(sf, 'source.cpp')
+
+                # include graders and headers, if necessary
+                for file_type, is_header in [('headers', True), ('graders', False)]:
+                    if file_type in d:
+                        for file in d[file_type]:
+                            file_path = os.path.join(PROBLEM_DIR,file)
+                            assert(os.path.isfile(file_path))
+                            file_name = file.split('/')[-1]
+                            add_file_to_box(file_path, file_name, is_header)
+
+                efile = box.prepfile('a.exe')
+                await box.run_command_async(f'g++ -O2 -std=c++11 -o {efile} {" ".join(code_files)}', timeout=10)
                 shutil.copy2(efile,ef)
                 print("recompiled %s" % (sf))
     box.cleanup()

@@ -153,7 +153,7 @@ async def page_submit(request):
     name = request.match_info['name']
     postdata = await request.post()
     proposed_input = postdata['proposed_input'].strip()
-    correct_output = postdata['correct_output'].strip()
+    correct_output = postdata.get('correct_output', '').strip() # interactive tasks don't have a correct output field, so we default to empty instead
 
     if proposed_input != "" or correct_output != "":
         global contestant_access
