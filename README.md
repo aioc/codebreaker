@@ -53,6 +53,13 @@ Then, simply run the `./setup.sh` script.
 sudo -u postgres ./setup.sh
 ```
 
+If you get permission issues, it may because the postgres user does not have permission to access wherever you cloned the codebreaker repo. This can be fixed with, for example
+```
+chmod o+x /home/ubuntu
+chmod o+rx /home/ubuntu/codebreaker
+```
+This gives permission for other uses to access ubuntu's home directory, so only do this if you are running on a dedicated codebreaker-only server without other users. 
+
 ### nginx (optional)
 
 nginx is only used as a reverse proxy - feel free to use any other similar service, or none at all.
