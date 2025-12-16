@@ -20,8 +20,6 @@ async def run_judge(problem, user_input, user_output):
 
     user_input_file = box.prepfile('user.in', user_input)
     user_output_file = box.prepfile('user.out', user_output)
-    broken_output_file = box.prepfile('broken.out', broken_output)
-    correct_output_file = box.prepfile('correct.out', correct_output)
     checker_exe = box.prepfile('checker', problem.checker_exe)
 
     if not problem.is_interactive:
@@ -56,7 +54,10 @@ async def run_judge(problem, user_input, user_output):
     except:
         box.cleanup()
         return (0, "[internal error: judges' solution failed]")
-    
+
+    broken_output_file = box.prepfile('broken.out', broken_output)
+    correct_output_file = box.prepfile('correct.out', correct_output)
+
     try:
         result = await box.run_command_async("%s %s %s %s" % (checker_exe, broken_output_file, correct_output_file, user_input_file))
         if result.strip() == "100":
