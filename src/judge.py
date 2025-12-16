@@ -20,8 +20,18 @@ async def run_judge(problem, user_input, user_output):
 
     user_input_file = box.prepfile('user.in', user_input)
     user_output_file = box.prepfile('user.out', user_output)
+    broken_exe = box.prepfile('broken.exe', problem.broken_exe)
+    correct_exe = box.prepfile('correct.exe', problem.correct_exe)
     checker_exe = box.prepfile('checker', problem.checker_exe)
 
+    try:
+        correct_output = await box.run_command_async(correct_exe, input = user_input)
+        correct_output = correct_output.strip()
+        correct_output_file = box.prepfile('correct.out', correct_output)
+    except:
+        box.cleanup()
+        return (0, "[internal error: judges' solution failed]")
+    
     if not problem.is_interactive:
         # Students do not submit output for interactive tasks
         try:
@@ -34,29 +44,16 @@ async def run_judge(problem, user_input, user_output):
             box.cleanup()
             return (0, "[internal error: checker broke when marking user output]")
 
-
-    broken_exe = box.prepfile('broken.exe', problem.broken_exe)
-    correct_exe = box.prepfile('correct.exe', problem.correct_exe)
-
     try:
         broken_output = await box.run_command_async(broken_exe, timeout=2, input = user_input)
         broken_output = broken_output.strip()
+        broken_output_file = box.prepfile('broken.out', broken_output)
     except execute.TimeoutExpired:
         return (10, "Code broken! (TLE)")
         box.cleanup()
     except execute.NonZeroReturnCode:
         return (10, "Code broken! (RE)")
         box.cleanup()
-
-    try:
-        correct_output = await box.run_command_async(correct_exe, input = user_input)
-        correct_output = correct_output.strip()
-    except:
-        box.cleanup()
-        return (0, "[internal error: judges' solution failed]")
-
-    broken_output_file = box.prepfile('broken.out', broken_output)
-    correct_output_file = box.prepfile('correct.out', correct_output)
 
     try:
         result = await box.run_command_async("%s %s %s %s" % (checker_exe, broken_output_file, correct_output_file, user_input_file))
